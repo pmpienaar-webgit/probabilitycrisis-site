@@ -270,5 +270,21 @@
     } };
 })();
 </script>
+<script>
+(function(){
+  var t=document.createElement('div');
+  t.style.cssText='position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(8px);background:#26221e;color:#e0b870;font-family:Lato,Arial,sans-serif;font-size:13px;letter-spacing:.08em;padding:10px 18px;border:1px solid rgba(224,184,112,.35);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:99;';
+  document.body.appendChild(t);var h;
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var addr=a.getAttribute('href').replace(/^mailto:/,'').split('?')[0];
+      try{navigator.clipboard.writeText(addr);}catch(e){}
+      t.textContent='Email address copied \u2014 '+addr;
+      t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+      clearTimeout(h);h=setTimeout(function(){t.style.opacity='0';t.style.transform='translateX(-50%) translateY(8px)';},2600);
+    });
+  });
+})();
+</script>
 </body>
 </html>
