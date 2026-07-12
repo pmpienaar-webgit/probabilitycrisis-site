@@ -58,12 +58,6 @@
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important;}
     }
-    @media (prefers-reduced-motion: no-preference){
-      #hy-divpath{stroke-dashoffset:160;animation:hy-draw 1.3s ease-out .15s forwards}
-      #hy-breaker{opacity:0;animation:hy-arrive .9s ease-out 1.05s forwards}
-      @keyframes hy-draw{to{stroke-dashoffset:0}}
-      @keyframes hy-arrive{to{opacity:1}}
-    }
 
 </style>
 </head>
@@ -111,8 +105,9 @@
         <g transform="translate(50 248) scale(1.7)"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#736e64"></path><path d="M13,9 L36,8 L2,18 Z" fill="#5f5a50"></path><path d="M13,9 L23,8 L9,15 Z" fill="#4c473e"></path></g></g>
         <g transform="translate(50 284) scale(1.7)"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#736e64"></path><path d="M13,9 L36,8 L2,18 Z" fill="#5f5a50"></path><path d="M13,9 L23,8 L9,15 Z" fill="#4c473e"></path></g></g>
         <path id="hy-divpath" d="M92,196 C150,160 208,118 242,104" stroke="#e0b870" stroke-width="1.5" stroke-dasharray="4 6" fill="none" opacity="0.9"></path>
-        <g id="hy-breaker"><g transform="translate(262 108) rotate(-31) scale(2.1)" opacity="0.22"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#000"></path><path d="M13,9 L36,8 L2,18 Z" fill="#000"></path><path d="M13,9 L23,8 L9,15 Z" fill="#000"></path></g></g>
-        <radialGradient id="hy-divglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#e0b870" stop-opacity="0.55"></stop><stop offset="1" stop-color="#e0b870" stop-opacity="0"></stop></radialGradient><circle cx="250" cy="100" r="80" fill="url(#hy-divglow)"></circle><g transform="translate(256 96) rotate(-31) scale(2.4)"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#eecb8a"></path><path d="M13,9 L36,8 L2,18 Z" fill="#cf9a49"></path><path d="M13,9 L23,8 L9,15 Z" fill="#9c7330"></path></g></g></g>
+        <g id="hy-arrival"><g transform="translate(262 108) rotate(-31) scale(2.1)" opacity="0.22"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#000"></path><path d="M13,9 L36,8 L2,18 Z" fill="#000"></path><path d="M13,9 L23,8 L9,15 Z" fill="#000"></path></g></g>
+        <radialGradient id="hy-divglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#e0b870" stop-opacity="0.55"></stop><stop offset="1" stop-color="#e0b870" stop-opacity="0"></stop></radialGradient><circle cx="250" cy="100" r="80" fill="url(#hy-divglow)"></circle></g><g id="hy-flyer" transform="translate(256 96) rotate(-31) scale(2.4)"><g transform="scale(0.72) translate(-13 -9)"><path d="M0,0 L36,8 L13,9 Z" fill="#eecb8a"></path><path d="M13,9 L36,8 L2,18 Z" fill="#cf9a49"></path><path d="M13,9 L23,8 L9,15 Z" fill="#9c7330"></path></g></g>
+        <path id="hy-flightpath" d="M50,206 C68,204 80,200 92,196 C150,160 208,118 242,104 C247,102 251,99 256,96" fill="none" stroke="none"></path>
       </svg>
     </div>
     <div data-reveal style="position:relative; z-index:1; max-width:900px;">
@@ -657,6 +652,42 @@
   }
   if (document.readyState !== 'loading') init();
   else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // static final scene stands
+  var svg = document.getElementById('hy-flightpath') ? document.getElementById('hy-flightpath').ownerSVGElement : null;
+  if (!svg) return;
+  var p = document.getElementById('hy-flightpath');
+  var flyer = document.getElementById('hy-flyer');
+  var wake = document.getElementById('hy-divpath');
+  var arrival = document.getElementById('hy-arrival');
+  if (!p || !flyer || !wake || !arrival) return;
+  var L = p.getTotalLength();
+  var DUR = 1800, DELAY = 150, LEAD = 0.18;
+  function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
+  function render(u){
+    var d = Math.min(L * u, L);
+    var pt = p.getPointAtLength(d);
+    var pt2 = p.getPointAtLength(Math.min(L, d + 1.2));
+    var ang = (d >= L - 0.6) ? -31 : Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+    var sc = 1.7 + (2.4 - 1.7) * u;
+    flyer.setAttribute('transform', 'translate(' + pt.x.toFixed(2) + ' ' + pt.y.toFixed(2) + ') rotate(' + ang.toFixed(1) + ') scale(' + sc.toFixed(3) + ')');
+    var wu = Math.max(0, Math.min(1, (u - LEAD) / (1 - LEAD)));
+    wake.style.strokeDashoffset = (160 * (1 - wu)).toFixed(1);
+    arrival.style.opacity = (u > 0.9) ? ((u - 0.9) / 0.1).toFixed(2) : '0';
+  }
+  render(0); // take-off state only AFTER we know motion is allowed
+  var t0 = null;
+  function frame(ts){
+    if (t0 === null) t0 = ts;
+    var u = Math.max(0, Math.min(1, (ts - t0 - DELAY) / DUR));
+    render(easeOut(u));
+    if (u < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  window.__HY = { render: render, path: p }; // deterministic QA hook (house pattern, cf. __KR)
 })();
 </script>
 <script>
