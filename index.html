@@ -55,8 +55,19 @@
     .pc-reachlink:hover{color:var(--hs-gold-text);border-color:var(--hs-gold);}
     .pc-dlrow:hover{color:var(--hs-gold-text);}
     .pc-keystone-link:hover{border-color:var(--hs-gold);color:var(--hs-gold-text);}
+    /* The one glossed word on this site. It stays the only one. */
+    .pc-gloss{position:relative;cursor:help;border-bottom:1px dotted var(--hs-gold);text-decoration:none;color:inherit;}
+    .pc-gloss:focus{outline:1.5px solid var(--hs-gold);outline-offset:2px;}
+    .pc-gloss .pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(340px,82vw);background:var(--hs-card);border:1px solid var(--hs-hair);border-top:2px solid var(--hs-gold);border-radius:6px;padding:14px 18px 15px;z-index:30;opacity:0;visibility:hidden;transition:opacity .18s ease;box-shadow:none;text-align:left;}
+    .pc-gloss .pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--hs-hair);}
+    .pc-gloss .pop.below{bottom:auto;top:calc(100% + 10px);}
+    .pc-gloss .pop.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--hs-hair);}
+    .pc-gloss .pop .k{display:block;font-family:var(--hs-sans);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--hs-gold-text);margin-bottom:7px;}
+    .pc-gloss .pop .d{font-family:var(--hs-text);font-style:normal;font-size:16.5px;line-height:1.5;color:var(--hs-ink2);}
+    .pc-gloss:hover .pop,.pc-gloss:focus .pop,.pc-gloss.open .pop{opacity:1;visibility:visible;}
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important;}
+      .pc-gloss .pop{transition:none;}
     }
 
 </style>
@@ -134,7 +145,7 @@
         <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">The 30-second read</div>
         <h2 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.95rem,5.2vw,2.85rem); line-height:1.12; letter-spacing:-0.012em; color:var(--hs-ink); margin:14px 0 0; max-width:22ch; text-wrap:balance;">If you read nothing else, read <em style="font-style:italic; font-weight:700; color:var(--hs-gold);">this.</em></h2>
         <div style="width:58px; height:2px; background:var(--hs-gold); margin:20px 0 0;"></div>
-        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael is a fractional advisor to big, mid-size and founder-led businesses. When decisions drag for months, projects stall, suppliers overcharge and teams blame each other, he finds the one spot where a small push gets the whole thing moving. It usually sits in the gap between a good plan and getting it done. Most often it is hands-on and cross-functional &mdash; in procurement, in the operational detail, in the decisions that stall between one team and the next. The result is something you can point at: the decision signed, the award out, the project moving. Twenty-one years inside big business taught him where to look. <span style="color:var(--hs-gold-text); font-style:italic;">The first conversation is free and there&rsquo;s no pitch.</span></p>
+        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael is a <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fractional</span><span class="d">Senior capability without the full-time hire, deployed exactly where it matters &mdash; priced to the problem, no firm around it.</span></span>fractional</a> advisor to big, mid-size and founder-led businesses. When decisions drag for months, projects stall, suppliers overcharge and teams blame each other, he finds the one spot where a small push gets the whole thing moving. It usually sits in the gap between a good plan and getting it done. Most often it is hands-on and cross-functional &mdash; in procurement, in the operational detail, in the decisions that stall between one team and the next. The result is something you can point at: the decision signed, the award out, the project moving. Twenty-one years inside big business taught him where to look. <span style="color:var(--hs-gold-text); font-style:italic;">The first conversation is free and there&rsquo;s no pitch.</span></p>
       </div>
 
       <!-- Problem table -->
@@ -688,6 +699,28 @@
   }
   requestAnimationFrame(frame);
   window.__HY = { render: render, path: p }; // deterministic QA hook (house pattern, cf. __KR)
+})();
+</script>
+<script>
+(function(){
+  var g=document.getElementById('pc-gloss'), pop=document.getElementById('pc-gloss-pop');
+  if(!g||!pop) return;
+  function place(){
+    pop.style.transform='translateX(-50%)';
+    pop.classList.remove('below');
+    var r=pop.getBoundingClientRect(), inset=14, dx=0;
+    if(r.top<70){ pop.classList.add('below'); r=pop.getBoundingClientRect(); }
+    if(r.left<inset) dx=inset-r.left;
+    if(r.right>innerWidth-inset) dx=(innerWidth-inset)-r.right;
+    if(dx) pop.style.transform='translateX(calc(-50% + '+dx.toFixed(0)+'px))';
+  }
+  function open(){ g.classList.add('open'); place(); }
+  g.addEventListener('click',function(e){ e.preventDefault(); g.classList.contains('open')?g.classList.remove('open'):open(); });
+  g.addEventListener('mouseenter',place);
+  g.addEventListener('focus',place);
+  document.addEventListener('click',function(e){ if(!g.contains(e.target)) g.classList.remove('open'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') g.classList.remove('open'); });
+  addEventListener('resize',function(){ if(g.classList.contains('open')) place(); });
 })();
 </script>
 <script>
