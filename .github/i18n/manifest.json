@@ -1,0 +1,22 @@
+{
+  "index.zh.html": {
+    "source": "index.html",
+    "base": "STAMP-AT-SHIP",
+    "updated": "2026-07-25"
+  },
+  "index.af.html": {
+    "source": "index.html",
+    "base": "STAMP-AT-SHIP",
+    "updated": "2026-07-25"
+  },
+  "keystone-read.zh.html": {
+    "source": "keystone-read.html",
+    "base": "STAMP-AT-SHIP",
+    "updated": "2026-07-25"
+  },
+  "keystone-read.af.html": {
+    "source": "keystone-read.html",
+    "base": "STAMP-AT-SHIP",
+    "updated": "2026-07-25"
+  }
+}

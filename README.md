@@ -12,3 +12,10 @@
 
 ## Contents
 `index.html` (Hybrid cut, the lead) · `index-primary.html` (Primary cut) · `keystone-read.html` (the instrument) · `profile.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `CNAME` · `robots.txt`
+
+## Translations
+`index.html` is the canonical English source, forever; `index.zh.html` (Simplified Mandarin) and `index.af.html` (Afrikaans) are derived artifacts, never edited independently of it — the same holds for `keystone-read.zh.html` / `keystone-read.af.html` against `keystone-read.html`. The manifest at `.github/i18n/manifest.json` records the exact source commit each translation derives from. **Run `python .github/i18n/check.py` before any site work** — it flags drift between the source and each translation's recorded base. On STALE: `git diff <base>..HEAD -- index.html`, translate only the delta, patch the translation, then bump `base` in the manifest to the new hash.
+
+Two recorded, deliberate divergences (2026-07-25 — the drift-check cannot see either; do not "fix" them silently):
+1. **The af door runs slightly ahead of the English canon**, from Michael's native walk-through: it adds *kleiner besighede* (audience), *in die beplanning* (where-he-works list), *of onsekerheid* (counterparty composite), *en bevestig* (stakeholder lens), *kennis-sintese en samewerking* (AI lens), *op die kruispad tussen besluit en impak* (hero subhead), *Strategiese* (procurement symptom). A back-port of these into `index.html`/`index.zh.html` is tabled as a decision for Michael; until taken, the af wording wins on the af page only.
+2. **`keystone-read.zh.html` carries sanctioned extra script logic** in its mailto/toast handler: WeChat's in-app browser kills `mailto:`, so the zh instrument copies the address *and* the composed read together and says so in the toast. Behavioural divergence is intentional there and only there; every other script difference across the six pages is string-table translation only.
