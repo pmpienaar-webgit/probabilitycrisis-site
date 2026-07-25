@@ -1,22 +1,22 @@
 {
   "index.zh.html": {
     "source": "index.html",
-    "base": "STAMP-AT-SHIP",
+    "base": "dbf5646f3cd3237690ff0e9a915e3d404b582616",
     "updated": "2026-07-25"
   },
   "index.af.html": {
     "source": "index.html",
-    "base": "STAMP-AT-SHIP",
+    "base": "dbf5646f3cd3237690ff0e9a915e3d404b582616",
     "updated": "2026-07-25"
   },
   "keystone-read.zh.html": {
     "source": "keystone-read.html",
-    "base": "STAMP-AT-SHIP",
+    "base": "dbf5646f3cd3237690ff0e9a915e3d404b582616",
     "updated": "2026-07-25"
   },
   "keystone-read.af.html": {
     "source": "keystone-read.html",
-    "base": "STAMP-AT-SHIP",
+    "base": "dbf5646f3cd3237690ff0e9a915e3d404b582616",
     "updated": "2026-07-25"
   }
 }
