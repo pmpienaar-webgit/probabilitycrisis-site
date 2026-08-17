@@ -48,27 +48,44 @@
       #pc-burger{display:none;}
       #pc-menu{display:none !important;}
     }
-    /* hover states (from prototype style-hover attributes) */
-    .pc-navlink:hover{opacity:0.62;}
-    .pc-menulink:hover{color:var(--hs-gold-text);}
-    .pc-card:hover{border-color:var(--hs-gold);}
-    .pc-cta:hover{background:#a8762f;}
-    .pc-herolink:hover{color:#f0e9dc;}
-    .pc-contactlink:hover{color:var(--hs-goldb);border-color:var(--hs-goldb);}
-    .pc-dllink:hover{color:var(--hs-goldb);}
-    .pc-reachlink:hover{color:var(--hs-gold-text);border-color:var(--hs-gold);}
-    .pc-dlrow:hover{color:var(--hs-gold-text);}
-    .pc-keystone-link:hover{border-color:var(--hs-gold);color:var(--hs-gold-text);}
+    /* ---- Focus ring (Homestyle rule 12) — the house ring replaces the browser
+       default. Inner ring = the ground the control sits on, outer ring = gold; both
+       ride custom properties so one rule serves every control on the page. On
+       near-black grounds --hs-goldd recedes, so the outer ring steps to --hs-goldb,
+       the on-dark accent gold these pages already use for emphasis and hover. ---- */
+    :root{--pc-focus-inner:var(--hs-cream);--pc-focus-outer:var(--hs-goldd);}
+    [data-ground="dark"]{--pc-focus-inner:var(--hs-ground);--pc-focus-outer:var(--hs-goldb);}
+    /* The header rides transparent over the dark hero, which is where keyboard focus
+       first lands; once it washes to cream the dark inner ring only gains contrast. */
+    #pc-nav{--pc-focus-inner:var(--hs-ground);--pc-focus-outer:var(--hs-goldb);}
+    a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:0 0 0 2px var(--pc-focus-inner),0 0 0 4px var(--pc-focus-outer);border-radius:4px;}
+    /* hover states (from prototype style-hover attributes) — gated to real pointers
+       (Homestyle rule 13) so touch never latches a hover it cannot release. */
+    @media (hover: hover) and (pointer: fine){
+      .pc-navlink:hover{opacity:0.62;}
+      .pc-menulink:hover{color:var(--hs-gold-text);}
+      .pc-card:hover{border-color:var(--hs-gold);}
+      .pc-cta:hover{background:#a8762f;}
+      .pc-herolink:hover{color:#f0e9dc;}
+      .pc-contactlink:hover{color:var(--hs-goldb);border-color:var(--hs-goldb);}
+      .pc-dllink:hover{color:var(--hs-goldb);}
+      .pc-reachlink:hover{color:var(--hs-gold-text);border-color:var(--hs-gold);}
+      .pc-dlrow:hover{color:var(--hs-gold-text);}
+      .pc-keystone-link:hover{border-color:var(--hs-gold);color:var(--hs-gold-text);}
+    }
     /* The one glossed word on this site. It stays the only one. */
     .pc-gloss{position:relative;cursor:help;border-bottom:1px dotted var(--hs-gold);text-decoration:none;color:inherit;}
-    .pc-gloss:focus{outline:1.5px solid var(--hs-gold);outline-offset:2px;}
+    /* The ring now comes from the shared a:focus-visible rule above; :focus still opens the popover. */
     .pc-gloss .pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(340px,82vw);background:var(--hs-card);border:1px solid var(--hs-hair);border-top:2px solid var(--hs-gold);border-radius:6px;padding:14px 18px 15px;z-index:30;opacity:0;visibility:hidden;transition:opacity .18s ease;box-shadow:none;text-align:left;}
     .pc-gloss .pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--hs-hair);}
     .pc-gloss .pop.below{bottom:auto;top:calc(100% + 10px);}
     .pc-gloss .pop.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--hs-hair);}
     .pc-gloss .pop .k{display:block;font-family:var(--hs-sans);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--hs-gold-text);margin-bottom:7px;}
     .pc-gloss .pop .d{font-family:var(--hs-text);font-style:normal;font-size:16.5px;line-height:1.5;color:var(--hs-ink2);}
-    .pc-gloss:hover .pop,.pc-gloss:focus .pop,.pc-gloss.open .pop{opacity:1;visibility:visible;}
+    .pc-gloss:focus .pop,.pc-gloss.open .pop{opacity:1;visibility:visible;}
+    @media (hover: hover) and (pointer: fine){
+      .pc-gloss:hover .pop{opacity:1;visibility:visible;}
+    }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important;}
       .pc-gloss .pop{transition:none;}
@@ -78,7 +95,7 @@
     .pc-langsel a,.pc-langsel span{font-weight:700;font-size:11px;letter-spacing:0.2em;}
     .pc-langsel .cur{color:var(--hs-goldb);}
     .pc-langsel a{color:inherit;transition:opacity .2s ease;}
-    .pc-langsel a:hover{opacity:0.62;}
+    @media (hover: hover) and (pointer: fine){.pc-langsel a:hover{opacity:0.62;}}
     .pc-langsel .sep{color:inherit;opacity:0.4;letter-spacing:0;}
     @media(min-width:860px){.pc-langsel{display:inline-flex;}}
     /* Selector as the last row of the mobile menu (always on cream — keep the light-ground colours). */
@@ -86,7 +103,7 @@
     .pc-langsel-m a,.pc-langsel-m span{font-weight:700;font-size:12px;letter-spacing:0.18em;}
     .pc-langsel-m .cur{color:var(--hs-gold-text);}
     .pc-langsel-m a{color:var(--hs-ink);transition:color .2s ease;}
-    .pc-langsel-m a:hover{color:var(--hs-gold-text);}
+    @media (hover: hover) and (pointer: fine){.pc-langsel-m a:hover{color:var(--hs-gold-text);}}
     .pc-langsel-m .sep{color:var(--hs-hair);letter-spacing:0;}
     @media(min-width:860px){.pc-langsel-m{display:none;}}
 </style>
@@ -100,12 +117,12 @@
       <span style="font-weight:700; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:inherit; white-space:nowrap;">The Probability Crisis</span>
     </a>
     <nav id="pc-links" style="align-items:center; gap:clamp(16px,2.2vw,32px);">
-      <a href="#thirty" data-scroll="thirty" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">The Short Version</a>
-      <a href="#think" data-scroll="think" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">How I Think</a>
-      <a href="#work" data-scroll="work" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">How I Work</a>
-      <a href="#practice" data-scroll="practice" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">In Practice</a>
-      <a href="#engage" data-scroll="engage" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">Engage</a>
-      <a href="#contact" data-scroll="contact" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:inherit; padding:8px 0;">Contact</a>
+      <a href="#thirty" data-scroll="thirty" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">The Short Version</a>
+      <a href="#think" data-scroll="think" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">How I Think</a>
+      <a href="#work" data-scroll="work" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">How I Work</a>
+      <a href="#practice" data-scroll="practice" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">In Practice</a>
+      <a href="#engage" data-scroll="engage" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">Engage</a>
+      <a href="#contact" data-scroll="contact" class="pc-navlink" style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:inherit; padding:8px 0;">Contact</a>
     </nav>
     <div class="pc-langsel" role="group" aria-label="Language">
       <span class="cur" aria-current="page" lang="en">EN</span>
@@ -123,12 +140,12 @@
 
   <!-- ============ MOBILE MENU ============ -->
   <div id="pc-menu" role="menu" style="position:fixed; top:55px; left:0; right:0; z-index:49; display:none; flex-direction:column; background:var(--hs-cream); border-bottom:1px solid var(--hs-border); padding:6px 0; opacity:0; transition:opacity .2s ease;">
-    <a href="#thirty" data-scroll="thirty" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">The Short Version</a>
-    <a href="#think" data-scroll="think" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">How I Think</a>
-    <a href="#work" data-scroll="work" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">How I Work</a>
-    <a href="#practice" data-scroll="practice" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">In Practice</a>
-    <a href="#engage" data-scroll="engage" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">Engage</a>
-    <a href="#contact" data-scroll="contact" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink);">Contact</a>
+    <a href="#thirty" data-scroll="thirty" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">The Short Version</a>
+    <a href="#think" data-scroll="think" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">How I Think</a>
+    <a href="#work" data-scroll="work" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">How I Work</a>
+    <a href="#practice" data-scroll="practice" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">In Practice</a>
+    <a href="#engage" data-scroll="engage" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">Engage</a>
+    <a href="#contact" data-scroll="contact" role="menuitem" class="pc-menulink" style="padding:15px clamp(20px,6vw,34px); font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink);">Contact</a>
     <div class="pc-langsel-m" role="group" aria-label="Language">
       <span class="cur" aria-current="page" lang="en">EN</span>
       <span class="sep" aria-hidden="true">·</span>
@@ -158,7 +175,7 @@
       <div style="display:flex; justify-content:center; margin-bottom:30px;">
         <svg width="50" height="50" viewBox="0 0 96 96" role="img" aria-label="The Probability Crisis seal"><circle cx="48" cy="48" r="44" fill="none" stroke="#b5853a" stroke-width="2.2"></circle><path d="M28,64 C42,62 56,60 70,58" stroke="#95896c" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M28,64 C40,58 50,46 68,26" stroke="#b5853a" stroke-width="3.6" fill="none" stroke-linecap="round"></path><circle cx="28" cy="64" r="2.4" fill="#95896c"></circle><circle cx="70" cy="58" r="2.6" fill="#95896c"></circle><circle cx="68" cy="26" r="4" fill="#b5853a"></circle></svg>
       </div>
-      <div style="font-weight:700; font-size:12px; letter-spacing:0.32em; text-transform:uppercase; color:var(--hs-goldb);">Fractional advisory · Cape Town</div>
+      <div style="font-weight:700; font-size:12px; letter-spacing:0.30em; text-transform:uppercase; color:var(--hs-goldb);">Fractional advisory · Cape Town</div>
       <h1 style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,7vw,4.6rem); line-height:1.06; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:24px auto 0; max-width:26ch; text-wrap:balance;">Companies get stuck. I find the spot where a small push gets everything <em style="font-style:italic; font-weight:800; color:var(--hs-goldb);">moving.</em></h1>
       <div style="width:64px; height:2px; background:var(--hs-gold); margin:32px auto 0;"></div>
       <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.18rem,2.5vw,1.55rem); line-height:1.5; color:var(--hs-on-dark-2); margin:28px auto 0; max-width:52ch;">Decisions drag for months. Projects stall. Suppliers overcharge. Teams blame each other. Twenty-one years inside big business &mdash; most of it running procurement in big retail &mdash; taught me where to look.</p>
@@ -185,15 +202,15 @@
       <div data-reveal style="margin-top:clamp(40px,5vw,58px);">
         <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px 20px;">
           <h3 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.4rem,3vw,1.85rem); line-height:1.15; color:var(--hs-ink); margin:0;">Sound <em style="font-style:italic; font-weight:700; color:var(--hs-goldd);">familiar?</em></h3>
-          <span style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-taupe);">Six that land on desks like yours</span>
+          <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-taupe);">Six that land on desks like yours</span>
         </div>
         <div style="margin-top:18px; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:6px; border:1px solid var(--hs-hair);">
           <table style="width:100%; min-width:600px; border-collapse:collapse; font-variant-numeric:tabular-nums;">
             <thead>
               <tr>
-                <th style="background:var(--hs-dark); color:#fff; font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.09em; text-transform:uppercase; text-align:left; padding:13px 18px;">The situation on your desk</th>
-                <th style="background:var(--hs-dark); color:#fff; font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.09em; text-transform:uppercase; text-align:left; padding:13px 18px; width:26%;">What it usually is</th>
-                <th style="background:var(--hs-dark); color:#fff; font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.09em; text-transform:uppercase; text-align:left; padding:13px 18px; width:24%;">What moving looks like</th>
+                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px;">The situation on your desk</th>
+                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:26%;">What it usually is</th>
+                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:24%;">What moving looks like</th>
               </tr>
             </thead>
             <tbody>
@@ -241,15 +258,15 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(18px,2.4vw,26px); margin-top:18px;">
           <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
             <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">A COO with a stalled award.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">The tender had sat in review for months while the supplier already in place quietly renewed. The real blockage wasn&rsquo;t price &mdash; it was a risk nobody would put their name to. The award letter went out within weeks. <span style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
+            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">The tender had sat in review for months while the supplier already in place quietly renewed. The real blockage wasn&rsquo;t price &mdash; it was a risk nobody would put their name to. The award letter went out within weeks. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
           </div>
           <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
             <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">A founder who had stopped negotiating.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">They were losing ground to a much larger counterparty by silence &mdash; every week of no-decision was a concession. We built the evidence until the terms were theirs to set, not the other side&rsquo;s to grant. They signed a deal they&rsquo;d have walked away from a month earlier. <span style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
+            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">They were losing ground to a much larger counterparty by silence &mdash; every week of no-decision was a concession. We built the evidence until the terms were theirs to set, not the other side&rsquo;s to grant. They signed a deal they&rsquo;d have walked away from a month earlier. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
           </div>
           <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
             <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">An ops director whose go-live kept slipping.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">Three quarters running, the date moved because &ldquo;ready&rdquo; had never been defined. We named the one owner and the one thing that actually had to be true before launch. The next date held. <span style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
+            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">Three quarters running, the date moved because &ldquo;ready&rdquo; had never been defined. We named the one owner and the one thing that actually had to be true before launch. The next date held. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
           </div>
         </div>
       </div>
@@ -278,7 +295,7 @@
         <div style="margin-top:16px; display:flex; justify-content:center;">
           <a href="keystone-read.html" class="pc-keystone-link" style="display:inline-flex; align-items:center; gap:12px; background:var(--hs-card); border:1.5px solid var(--hs-gold); border-radius:6px; padding:18px 30px; font-family:var(--hs-sans); color:var(--hs-gold-text); transition:border-color .2s ease, color .2s ease, background-color .2s ease;">
             <span style="flex:none; width:9px; height:9px; background:var(--hs-gold); transform:rotate(45deg);"></span>
-            <span style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase;">Or take the Keystone Read &mdash; five questions, nothing leaves the page (we never see your answers) &rarr;</span>
+            <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;">Or take the Keystone Read &mdash; five questions, nothing leaves the page (we never see your answers) &rarr;</span>
           </a>
         </div>
         <div style="margin-top:30px; text-align:center; font-family:var(--hs-sans); font-size:0.98rem; color:var(--hs-gray);">That&rsquo;s the short version. The whole house is below.</div>
@@ -387,7 +404,7 @@
     <div data-reveal style="max-width:760px; margin:0 auto;">
       <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">The terrain</div>
       <div style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(3.4rem,13vw,6rem); line-height:0.96; color:var(--hs-goldd); margin:14px 0 0; font-variant-numeric:tabular-nums; letter-spacing:-0.02em;">R4.2B+</div>
-      <div style="font-weight:700; font-size:clamp(11px,1.4vw,12.5px); letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-ink2); margin:16px 0 0;">Indirect operating spend in the portfolio · Opex · ≈ US$250 million</div>
+      <div style="font-weight:700; font-size:clamp(11px,1.4vw,12.5px); letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-ink2); margin:16px 0 0;">Indirect operating spend in the portfolio · Opex · ≈ US$250 million</div>
       <p style="font-family:var(--hs-sans); font-size:clamp(1rem,1.6vw,1.12rem); line-height:1.6; color:var(--hs-gray); margin:20px auto 0; max-width:52ch;">The GNFR portfolio baseline — equipment, services, consumables, corporate spend. Capital spend sits on top, year by year.</p>
       <p style="font-family:var(--hs-sans); font-size:clamp(0.95rem,1.4vw,1.04rem); line-height:1.6; color:var(--hs-taupe); margin:14px auto 0; max-width:54ch;">The size of the room, not a number to admire. Over two decades across finance, operations, supply chain and multi-billion-rand indirect procurement.</p>
     </div>
@@ -487,19 +504,19 @@
         <div style="border-top:2px solid var(--hs-gold); margin-top:16px;"></div>
         <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 24px; padding:20px 0; border-bottom:1px solid var(--hs-hair);">
           <div style="flex:1 1 300px;"><h4 style="font-family:var(--hs-serif); font-weight:500; font-size:clamp(1.2rem,2vw,1.4rem); color:var(--hs-ink); margin:0;">Diagnostic</h4><p style="font-family:var(--hs-sans); font-size:clamp(0.96rem,0.4vw+0.88rem,1.04rem); line-height:1.55; color:var(--hs-ink2); margin:6px 0 0;">Rapid assessment of a stuck situation. Keystones identified, interventions mapped.</p></div>
-          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-gold-text);">2–4 weeks</span>
+          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gold-text);">2–4 weeks</span>
         </div>
         <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 24px; padding:20px 0; border-bottom:1px solid var(--hs-hair);">
           <div style="flex:1 1 300px;"><h4 style="font-family:var(--hs-serif); font-weight:500; font-size:clamp(1.2rem,2vw,1.4rem); color:var(--hs-ink); margin:0;">Architecture</h4><p style="font-family:var(--hs-sans); font-size:clamp(0.96rem,0.4vw+0.88rem,1.04rem); line-height:1.55; color:var(--hs-ink2); margin:6px 0 0;">Build the governance frameworks, decision structures, and accountability scaffolding that make execution inevitable rather than aspirational.</p></div>
-          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-gold-text);">1–3 months</span>
+          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gold-text);">1–3 months</span>
         </div>
         <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 24px; padding:20px 0; border-bottom:1px solid var(--hs-hair);">
           <div style="flex:1 1 300px;"><h4 style="font-family:var(--hs-serif); font-weight:500; font-size:clamp(1.2rem,2vw,1.4rem); color:var(--hs-ink); margin:0;">Navigation</h4><p style="font-family:var(--hs-sans); font-size:clamp(0.96rem,0.4vw+0.88rem,1.04rem); line-height:1.55; color:var(--hs-ink2); margin:6px 0 0;">Ongoing advisory through a complex transformation, negotiation, or change. Thinking partner on retainer.</p></div>
-          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-gold-text);">3–12 months</span>
+          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gold-text);">3–12 months</span>
         </div>
         <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 24px; padding:20px 0; border-bottom:1px solid var(--hs-hair);">
           <div style="flex:1 1 300px;"><h4 style="font-family:var(--hs-serif); font-weight:500; font-size:clamp(1.2rem,2vw,1.4rem); color:var(--hs-ink); margin:0;">Intervention</h4><p style="font-family:var(--hs-sans); font-size:clamp(0.96rem,0.4vw+0.88rem,1.04rem); line-height:1.55; color:var(--hs-ink2); margin:6px 0 0;">High-stakes situations requiring immediate senior capability.</p></div>
-          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-gold-text);">As needed</span>
+          <span style="flex:none; font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gold-text);">As needed</span>
         </div>
       </div>
 
@@ -513,7 +530,7 @@
       <div data-reveal style="margin-top:clamp(48px,6vw,72px); display:flex; justify-content:center;">
         <a href="keystone-read.html" class="pc-keystone-link" style="display:inline-flex; align-items:center; gap:12px; background:var(--hs-card); border:1px solid var(--hs-hair); border-radius:6px; padding:16px 26px; font-family:var(--hs-sans); color:var(--hs-ink); transition:border-color .2s ease, color .2s ease;">
           <span style="flex:none; width:9px; height:9px; background:var(--hs-gold); transform:rotate(45deg);"></span>
-          <span style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase;">See your own keystone &mdash; five questions, two minutes →</span>
+          <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;">See your own keystone &mdash; five questions, two minutes →</span>
         </a>
       </div>
     </div>
@@ -573,7 +590,7 @@
     <div style="position:relative; z-index:1; max-width:1000px; margin:clamp(56px,8vw,84px) auto 0; padding-top:clamp(26px,4vw,36px); border-top:1px solid rgba(240,233,220,0.12); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; text-align:left;">
       <div style="display:flex; align-items:center; gap:13px;">
         <svg width="36" height="36" viewBox="0 0 96 96" role="img" aria-label="The Probability Crisis seal"><circle cx="48" cy="48" r="44" fill="#b23a2e"></circle><circle cx="48" cy="48" r="36" fill="none" stroke="#f0e4cc" stroke-width="0.8" opacity="0.45"></circle><path d="M28,64 C42,62 56,60 70,58" stroke="#e8dcc4" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"></path><path d="M28,64 C40,58 50,46 68,26" stroke="#f4ecd8" stroke-width="3.6" fill="none" stroke-linecap="round"></path><circle cx="28" cy="64" r="2.4" fill="#e8dcc4"></circle><circle cx="70" cy="58" r="2.6" fill="#e8dcc4" opacity="0.7"></circle><circle cx="68" cy="26" r="4" fill="#f4ecd8"></circle></svg>
-        <span style="font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--hs-on-dark-2);">The Probability Crisis</span>
+        <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-on-dark-2);">The Probability Crisis</span>
       </div>
       <div style="font-weight:700; font-size:10.5px; letter-spacing:0.13em; text-transform:uppercase; color:var(--hs-goldlbl-d); line-height:1.9; text-align:right;">Designed in Cape Town · <span style="font-style:italic; text-transform:none; letter-spacing:0.02em; font-weight:400; font-family:var(--hs-text); color:var(--hs-on-dark-2); font-size:1.15em;">Mellivora capensis</span> country<br>© 2026 The Probability Crisis · Michael Pienaar</div>
     </div>
