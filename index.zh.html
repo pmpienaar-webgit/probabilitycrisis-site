@@ -122,9 +122,9 @@
     .pc-langsel{display:none;align-items:center;gap:12px;font-family:var(--hs-sans);white-space:nowrap;}
     .pc-langsel a,.pc-langsel span{font-weight:700;font-size:11px;letter-spacing:0.2em;}
     .pc-langsel .cur{color:var(--hs-goldb);}
-    .pc-langsel a{color:inherit;transition:color .2s ease,opacity .2s ease;}
+    .pc-langsel a{color:inherit;transition:opacity .2s ease;}
     @media (hover: hover) and (pointer: fine){.pc-langsel a:hover{opacity:0.62;}}
-    .pc-langsel .sep{color:var(--hs-hair);letter-spacing:0;}
+    .pc-langsel .sep{color:inherit;opacity:0.4;letter-spacing:0;}
     @media(min-width:860px){.pc-langsel{display:inline-flex;}}
     /* Selector as the last row of the mobile menu. */
     .pc-langsel-m{display:flex;align-items:center;gap:14px;padding:15px clamp(20px,6vw,34px) 16px;margin-top:4px;border-top:1px solid var(--hs-border);font-family:var(--hs-sans);}
@@ -675,12 +675,16 @@
           nav.style.webkitBackdropFilter = 'none';
           nav.style.borderBottomColor = 'transparent';
           nav.style.color = 'var(--hs-on-dark)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-ground)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldb)');
         } else {
           nav.style.background = 'rgba(243,239,231,0.9)';
           nav.style.backdropFilter = 'saturate(150%) blur(10px)';
           nav.style.webkitBackdropFilter = 'saturate(150%) blur(10px)';
           nav.style.borderBottomColor = 'var(--hs-border)';
           nav.style.color = 'var(--hs-ink)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-cream)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldd)');
         }
       };
       var probeY = 28;

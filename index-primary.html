@@ -605,12 +605,16 @@
           nav.style.webkitBackdropFilter = 'saturate(150%) blur(10px)';
           nav.style.borderBottomColor = 'var(--hs-border)';
           nav.style.color = 'var(--hs-ink)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-cream)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldd)');
         } else {
           nav.style.background = 'transparent';
           nav.style.backdropFilter = 'none';
           nav.style.webkitBackdropFilter = 'none';
           nav.style.borderBottomColor = 'transparent';
           nav.style.color = 'var(--hs-on-dark)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-ground)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldb)');
         }
       };
       var onScroll = function () {

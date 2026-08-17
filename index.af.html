@@ -646,12 +646,16 @@
           nav.style.webkitBackdropFilter = 'none';
           nav.style.borderBottomColor = 'transparent';
           nav.style.color = 'var(--hs-on-dark)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-ground)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldb)');
         } else {
           nav.style.background = 'rgba(243,239,231,0.9)';
           nav.style.backdropFilter = 'saturate(150%) blur(10px)';
           nav.style.webkitBackdropFilter = 'saturate(150%) blur(10px)';
           nav.style.borderBottomColor = 'var(--hs-border)';
           nav.style.color = 'var(--hs-ink)';
+          nav.style.setProperty('--pc-focus-inner', 'var(--hs-cream)');
+          nav.style.setProperty('--pc-focus-outer', 'var(--hs-goldd)');
         }
       };
       var probeY = 28;
