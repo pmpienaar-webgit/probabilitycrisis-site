@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://probabilitycrisis.com/sitemap.xml

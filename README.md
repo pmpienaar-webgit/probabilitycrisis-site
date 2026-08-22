@@ -5,10 +5,14 @@
 ## Operating knowledge
 - **Publish = push.** No separate deploy step. Live in ~90s; CDN caches 10 min (hard-refresh to verify).
 - **Transient deploy failures are a known GitHub Pages behaviour** (build succeeds, "Deploy to GitHub Pages" step fails — 3 occurrences 2026-07-03/04). Remedy: empty commit to retrigger. Watchers should check the RUN VERDICT via the Actions API, not just poll content — silence is not success.
-- **Source of truth chain:** `Prob Crisis\Website\hook-layer-draft\` (site pages) and `Prob Crisis\Website\web-edition-draft\boutique\` (the working paper) are the editable sources; this repo holds deploy copies. Edit source → copy here → push. Keep `Prob Crisis\Website\index*.html` mirrors in sync.
+- **Source of truth chain:** **this repo is the source of truth.** `Prob Crisis\Website\index*.html` / `keystone-read.html` are deploy mirrors, refreshed FROM the repo at ship — never edited as sources. `Prob Crisis\Website\hook-layer-draft\*.hook.html` are historical working files.
 - **PDFs are compiled artifacts** — edit the HTML source, re-render via Chrome headless `--print-to-pdf` (ABSOLUTE paths — relative output paths fail silently), then copy here. `what-i-do.pdf` = the boutique edition (house standard: dark full-bleed cover, cream full-bleed body). `profile.pdf` = the one-pager (30-Second-Gate + Barrage certified).
 - **Standing promises this site carries** (audited by the Adversarial Barrage): "the first conversation is free and there's no pitch" (permanent policy) · the Keystone Read's "nothing leaves the page" (zero network calls — re-verify the zero-external-request property on every substantive change).
 - **DNS**: zone on Google nameservers; MX = Google Workspace (live email — never touch); A records → GitHub Pages IPs; CNAME file pins the domain.
+
+## Ship ritual
+- **CSP hashes:** every inline `<script>` is allow-listed by SHA-256 in a `<meta http-equiv="Content-Security-Policy">` tag. After ANY edit, run `python .github/csp/stamp.py`; before pushing, `python .github/csp/stamp.py --check` must exit 0. The policy lives in that script (`connect-src 'none'` — the browser enforces that nothing leaves the page).
+- `_config.yml` exists only to make Jekyll serve `.well-known/security.txt`; the pages carry no front matter.
 
 ## Contents
 `index.html` (Hybrid cut, the lead) · `index-primary.html` (Primary cut) · `keystone-read.html` (the instrument) · `profile.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `CNAME` · `robots.txt`

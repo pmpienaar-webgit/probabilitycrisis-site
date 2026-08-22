@@ -1,0 +1,4 @@
+Contact: mailto:michaelp@probabilitycrisis.com
+Expires: 2027-08-01T00:00:00.000Z
+Preferred-Languages: en, af, zh
+Canonical: https://probabilitycrisis.com/.well-known/security.txt
