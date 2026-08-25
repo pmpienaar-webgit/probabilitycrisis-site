@@ -19,8 +19,9 @@ way. Where this file and the README appear to disagree, the README wins.
 - **Before push:** `python .github/csp/stamp.py --check` must exit 0.
 
 A pre-push hook (`.git/hooks/pre-push` — local and unversioned; a fresh clone
-must reinstall it) refuses any push while either check fails, or while a mobile
-number or `tel:` link sits in tracked files. Fix what it names; never bypass it.
+must reinstall it) refuses any push while either check fails, or while the
+mobile number or a dialable `tel:` link sits in tracked files. Fix what it
+names; never bypass it.
 
 ## Standing promises — published, so breaking them is outward
 
@@ -28,7 +29,8 @@ number or `tel:` link sits in tracked files. Fix what it names; never bypass it.
   no external requests, no CDN, no analytics, ever. The dependency set is
   closed; adding any external resource is Michael's ruling, not a judgment call.
 - **Email is the one contact channel online** (ruling 2026-07-27). No mobile
-  number, no `tel:` links on any public surface. The hook greps for both.
+  number, no dialable `tel:` links on any public surface. The hook greps for
+  the number and for `tel:` followed by a digit.
 - **GitHub Pages sends no custom headers.** HSTS/XFO/nosniff were consciously
   declined (2026-08-22, DNS/MX risk not worth it for a brochure site) — do not
   "fix" this with a proxy without a ruling.
