@@ -1,22 +1,22 @@
 {
   "index.zh.html": {
     "source": "index.html",
-    "base": "d94931a0fc7d5e5a916e386b87b973eae18be4c0",
-    "updated": "2026-08-25"
+    "base": "5edf73ebb030bdd0812dafb90570518ccbd6c053",
+    "updated": "2026-08-29"
   },
   "index.af.html": {
     "source": "index.html",
-    "base": "d94931a0fc7d5e5a916e386b87b973eae18be4c0",
-    "updated": "2026-08-25"
+    "base": "5edf73ebb030bdd0812dafb90570518ccbd6c053",
+    "updated": "2026-08-29"
   },
   "keystone-read.zh.html": {
     "source": "keystone-read.html",
     "base": "d94931a0fc7d5e5a916e386b87b973eae18be4c0",
-    "updated": "2026-08-25"
+    "updated": "2026-08-29"
   },
   "keystone-read.af.html": {
     "source": "keystone-read.html",
     "base": "d94931a0fc7d5e5a916e386b87b973eae18be4c0",
-    "updated": "2026-08-25"
+    "updated": "2026-08-29"
   }
 }
