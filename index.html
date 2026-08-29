@@ -129,6 +129,12 @@
     .pc-skip:focus{left:12px;}
     main:focus{outline:none;}
     @media (max-width:359px){#pc-nav>a>span{font-size:11px !important;letter-spacing:0.12em !important;}#pc-nav>a>svg{flex:none;}#pc-burger{flex:none;}#pc-nav>a{min-width:0;}}
+    .pc-langsel-hero{position:absolute;right:clamp(18px,4vw,40px);top:67px;z-index:5;text-align:right;font-family:var(--hs-sans);font-weight:700;font-size:11px;letter-spacing:0.2em;color:var(--hs-on-dark-2);}
+    .pc-langsel-hero .cur{color:var(--hs-goldb);}
+    .pc-langsel-hero a{color:inherit;text-decoration:none;transition:opacity .2s ease;}
+    @media (hover: hover) and (pointer: fine){.pc-langsel-hero a:hover{opacity:0.62;}}
+    .pc-langsel-hero .sep{opacity:0.4;letter-spacing:0;}
+    @media(min-width:860px){.pc-langsel-hero{display:none;}}
 </style>
 </head>
 <body>
@@ -182,6 +188,13 @@
   <!-- ============ FRONT DOOR · Midnight (centred) ============ -->
 <main id="main">
   <section id="top" data-ground="dark" style="position:relative; overflow:hidden; background:var(--hs-ground); color:var(--hs-on-dark); min-height:clamp(600px,95vh,950px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:118px clamp(22px,5vw,40px) 96px;">
+  <div class="pc-langsel-hero" role="group" aria-label="Language">
+      <span class="cur" aria-current="page" lang="en">EN</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="index.zh.html" hreflang="zh-Hans" lang="zh-Hans">中文</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="index.af.html" hreflang="af" lang="af">AF</a>
+    </div>
     <div aria-hidden="true" style="position:absolute; top:50%; left:50%; width:min(720px,150vw); height:720px; transform:translate(-50%,-54%); background:radial-gradient(circle at center, rgba(224,184,112,0.15), rgba(224,184,112,0.03) 40%, transparent 66%); pointer-events:none;"></div>
     <div aria-hidden="true" style="position:absolute; right:clamp(-40px,1vw,64px); bottom:4%; width:min(580px,80vw); opacity:0.4; pointer-events:none; z-index:0;">
       <svg width="100%" viewBox="0 0 330 320" role="img" aria-label="One gold plane breaking up-right from a grey formation">
