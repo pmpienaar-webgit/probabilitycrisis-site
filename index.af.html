@@ -10,7 +10,7 @@
 <meta property="og:site_name" content="The Probability Crisis">
 <meta property="og:url" content="https://probabilitycrisis.com/index.af.html">
 <meta property="og:title" content="The Probability Crisis — Michael Pienaar · Fraksionele advies · Kaapstad">
-<meta property="og:description" content="Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan aan die stuur van verkryging.">
+<meta property="og:description" content="Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.">
 <meta property="og:image" content="https://probabilitycrisis.com/assets/og-card-af.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,8 +20,8 @@
 <meta property="og:locale:alternate" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <title>The Probability Crisis — Michael Pienaar · Fraksionele advies · Kaapstad</title>
-<meta name="description" content="Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan aan die stuur van verkryging.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Michael Pienaar","url":"https://probabilitycrisis.com/","jobTitle":"Fraksionele raadgewer","description":"Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan aan die stuur van verkryging.","email":"mailto:michaelp@probabilitycrisis.com","address":{"@type":"PostalAddress","addressLocality":"Cape Town","addressCountry":"ZA"},"sameAs":["https://linkedin.com/in/michael-pienaar-93319710"],"knowsLanguage":["en","af","zh"],"brand":{"@type":"Brand","name":"The Probability Crisis"},"@id":"https://probabilitycrisis.com/#michael"},{"@type":"ProfessionalService","@id":"https://probabilitycrisis.com/#practice","name":"The Probability Crisis","url":"https://probabilitycrisis.com/","description":"Advies (Strategie, Bestuur, Bedryf)","knowsAbout":["Strategie","Bestuur","Bedryf","Verkryging","Onderhandeling","Voorsieningsketting"],"founder":{"@id":"https://probabilitycrisis.com/#michael"}}]}</script>
+<meta name="description" content="Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Michael Pienaar","url":"https://probabilitycrisis.com/","jobTitle":"Fraksionele raadgewer","description":"Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.","email":"mailto:michaelp@probabilitycrisis.com","address":{"@type":"PostalAddress","addressLocality":"Cape Town","addressCountry":"ZA"},"sameAs":["https://linkedin.com/in/michael-pienaar-93319710"],"knowsLanguage":["en","af","zh"],"brand":{"@type":"Brand","name":"The Probability Crisis"},"@id":"https://probabilitycrisis.com/#michael"},{"@type":"ProfessionalService","@id":"https://probabilitycrisis.com/#practice","name":"The Probability Crisis","url":"https://probabilitycrisis.com/","description":"Advies (Strategie, Bestuur, Bedryf)","knowsAbout":["Strategie","Bestuur","Bedryf","Verkryging","Onderhandeling","Voorsieningsketting"],"founder":{"@id":"https://probabilitycrisis.com/#michael"}}]}</script>
 <link rel="alternate" hreflang="en" href="https://probabilitycrisis.com/">
 <link rel="alternate" hreflang="zh-Hans" href="https://probabilitycrisis.com/index.zh.html">
 <link rel="alternate" hreflang="af" href="https://probabilitycrisis.com/index.af.html">
@@ -136,6 +136,19 @@
     @media (hover: hover) and (pointer: fine){.pc-langsel-hero a:hover{opacity:0.62;}}
     .pc-langsel-hero .sep{opacity:0.4;letter-spacing:0;}
     @media(min-width:860px){.pc-langsel-hero{display:none;}}
+    /* "Sound familiar?" on a phone (600px and narrower): each row stacks into a block and
+       each cell shows its column header (data-label) above it in the small-caps label
+       style. The header row leaves the layout but stays with screen readers. The cells
+       carry inline padding and borders, hence !important on those two only. */
+    @media (max-width:600px){
+      .pc-fam{min-width:0 !important;position:relative;}
+      .pc-fam,.pc-fam tbody,.pc-fam tr,.pc-fam td{display:block;}
+      .pc-fam thead{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+      .pc-fam tr{padding:9px 0;border-bottom:1px solid var(--hs-hair);}
+      .pc-fam tr:last-child{border-bottom:0;}
+      .pc-fam td{padding:5px 18px !important;border-bottom:0 !important;}
+      .pc-fam td::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--hs-sans);font-style:normal;font-weight:700;font-size:11px;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;color:var(--hs-gray);}
+    }
 </style>
 </head>
 <body>
@@ -217,7 +230,7 @@
       <div style="font-weight:700; font-size:12px; letter-spacing:0.30em; text-transform:uppercase; color:var(--hs-goldb);">Fraksionele advies · Kaapstad</div>
       <h1 style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,7vw,4.6rem); line-height:1.06; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:24px auto 0; max-width:26ch; text-wrap:balance;">Maatskappye brand vas. Ek kry die plek waar een klein stootjie alles weer laat <em style="font-style:italic; font-weight:800; color:var(--hs-goldb);">beweeg.</em></h1>
       <div style="width:64px; height:2px; background:var(--hs-gold); margin:32px auto 0;"></div>
-      <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.18rem,2.5vw,1.55rem); line-height:1.5; color:var(--hs-on-dark-2); margin:28px auto 0; max-width:52ch;">Besluite sleep maande aan. Projekte staan stil. Verskaffers oorvra. Spanne blameer mekaar. Een-en-twintig jaar binne die groot sakewêreld &mdash; die meeste daarvan aan die stuur van verkryging by groot kleinhandelaars, op die kruispad tussen besluit en impak &mdash; het my geleer waar om te kyk.</p>
+      <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.18rem,2.5vw,1.55rem); line-height:1.5; color:var(--hs-on-dark-2); margin:28px auto 0; max-width:52ch;">Besluite sleep maande aan. Projekte staan stil. Verskaffers oorvra. Spanne blameer mekaar. Een-en-twintig jaar binne die groot sakewêreld &mdash; die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging, op die kruispad tussen besluit en impak &mdash; het my geleer waar om te kyk.</p>
       <div style="margin:clamp(34px,4.5vw,44px) auto 0;">
         <a href="keystone-read.af.html" class="pc-cta" style="display:inline-block; background:var(--hs-gold); color:#1b1813; font-family:var(--hs-sans); font-weight:700; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; padding:18px 38px; border-radius:0; transition:background-color .25s ease;">Kry jou sleutelpunt &mdash; die een plek om te druk &middot; 5 vrae &rarr;</a>
       </div>
@@ -234,7 +247,7 @@
         <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">Die 30-sekonde-weergawe</div>
         <h2 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.95rem,5.2vw,2.85rem); line-height:1.12; letter-spacing:-0.012em; color:var(--hs-ink); margin:14px 0 0; max-width:22ch; text-wrap:balance;">As jy niks anders lees nie, lees <em style="font-style:italic; font-weight:700; color:var(--hs-goldd);">dít.</em></h2>
         <div style="width:58px; height:2px; background:var(--hs-gold); margin:20px 0 0;"></div>
-        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael is ’n <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fraksioneel</span><span class="d">Senior vermoë sonder die voltydse aanstelling, ingespan presies waar dit saak maak &mdash; geprys volgens die probleem, geen firma daarrondom nie.</span></span>fraksionele</a> raadgewer vir groot en middelgroot besighede, asook kleiner besighede wat nog deur hul stigters bestuur word. Wanneer besluite maande aansleep, projekte stilstaan, verskaffers oorvra en spanne mekaar blameer, kry hy die een plek waar ’n klein stootjie die hele ding aan die beweeg kry. Dit sit gewoonlik in die gaping tussen ’n goeie plan en om dit gedaan te kry. Meestal werk hy self saam, dwarsoor afdelings &mdash; in aankope, in die operasionele detail, in die beplanning en in die besluite wat tussen spanne vasval. Die resultaat is iets wat jy kan uitwys: die besluit geteken, die toekenning uit, die projek aan die beweeg. Een-en-twintig jaar binne die groot sakewêreld het hom geleer waar om te kyk. <span style="color:var(--hs-gold-text); font-style:italic;">Die eerste gesprek is gratis en daar’s geen verkoopspraatjie nie.</span></p>
+        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael is ’n <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fraksioneel</span><span class="d">Senior vermoë sonder die voltydse aanstelling, ingespan presies waar dit saak maak &mdash; geprys volgens die probleem, geen firma daarrondom nie.</span></span>fraksionele</a> raadgewer vir groot en middelgroot besighede, asook kleiner besighede wat nog deur hul stigters bestuur word. Wanneer besluite maande aansleep, projekte stilstaan, verskaffers oorvra en spanne mekaar blameer, kry hy die een plek waar ’n klein stootjie die hele ding aan die beweeg kry. Dit sit gewoonlik in die gaping tussen ’n goeie plan en om dit gedaan te kry. Meestal werk hy self saam, dwarsoor afdelings &mdash; in aankope, in die operasionele detail, in die beplanning en in die besluite wat tussen spanne vasval. Die resultaat is iets wat jy kan uitwys: die besluit geteken, die toekenning uit, die projek aan die beweeg. Een-en-twintig jaar binne die groot sakewêreld het hom geleer waar om te kyk. <a href="mailto:michaelp@probabilitycrisis.com?subject=Eerste%20gesprek"><span style="color:var(--hs-gold-text); font-style:italic; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px;">Die eerste gesprek is gratis en daar’s geen verkoopspraatjie nie.</span></a></p>
       </div>
 
       <!-- Problem table -->
@@ -244,44 +257,44 @@
           <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-taupe);">Ses wat op lessenaars soos joune beland</span>
         </div>
         <div style="margin-top:18px; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:6px; border:1px solid var(--hs-hair);">
-          <table style="width:100%; min-width:600px; border-collapse:collapse; font-variant-numeric:tabular-nums;">
-            <thead>
-              <tr>
-                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px;">Die situasie op jou lessenaar</th>
-                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:26%;">Wat dit gewoonlik is</th>
-                <th style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:24%;">Hoe beweging lyk</th>
+          <table class="pc-fam" role="table" style="width:100%; min-width:600px; border-collapse:collapse; font-variant-numeric:tabular-nums;">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px;">Die situasie op jou lessenaar</th>
+                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:26%;">Wat dit gewoonlik is</th>
+                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:24%;">Hoe beweging lyk</th>
               </tr>
             </thead>
-            <tbody>
-              <tr style="background:var(--hs-card);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die kapitaalgoedkeuring op sy derde hervoorlegging</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Niemand wil die nee op sy naam vat nie</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Hierdie kwartaal geteken</td>
+            <tbody role="rowgroup">
+              <tr role="row" style="background:var(--hs-card);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die kapitaalgoedkeuring op sy derde hervoorlegging</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Niemand wil die nee op sy naam vat nie</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Hierdie kwartaal geteken</td>
               </tr>
-              <tr style="background:rgba(181,133,58,0.05);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die verskaffersbesluit wat in hersiening vasval terwyl die ou kontrak homself stilweg hernu</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die risiko het geen eienaar nie</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die nuwe kontrak geteken</td>
+              <tr role="row" style="background:rgba(181,133,58,0.05);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die verskaffersbesluit wat in hersiening vasval terwyl die ou kontrak homself stilweg hernu</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die risiko het geen eienaar nie</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die nuwe kontrak geteken</td>
               </tr>
-              <tr style="background:var(--hs-card);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die organisasie-herontwerp waarmee almal saamstem, maar wat niemand wil afteken nie</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Twee funksies, een gaping</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Een eienaar, een datum</td>
+              <tr role="row" style="background:var(--hs-card);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die organisasie-herontwerp waarmee almal saamstem, maar wat niemand wil afteken nie</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Twee funksies, een gaping</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Een eienaar, een datum</td>
               </tr>
-              <tr style="background:rgba(181,133,58,0.05);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die stelsel se go-live vir ’n derde kwartaal uitgestel</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">&ldquo;Gereed&rdquo; is nooit gedefinieer nie</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">’n Datum wat hou</td>
+              <tr role="row" style="background:rgba(181,133,58,0.05);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die stelsel se go-live vir ’n derde kwartaal uitgestel</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">&ldquo;Gereed&rdquo; is nooit gedefinieer nie</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">’n Datum wat hou</td>
               </tr>
-              <tr style="background:var(--hs-card);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die prysverhoging wat jy weet jy moet deurgee, en dit nog nie gedoen het nie</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die gesprek wat niemand wil begin nie</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die brief gaan uit</td>
+              <tr role="row" style="background:var(--hs-card);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die prysverhoging wat jy weet jy moet deurgee, en dit nog nie gedoen het nie</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die gesprek wat niemand wil begin nie</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Die brief gaan uit</td>
               </tr>
-              <tr style="background:rgba(181,133,58,0.05);">
-                <td style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; vertical-align:top;">Die heronderhandeling wat jy stadig verloor, een klein toegewing op ’n slag</td>
-                <td style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; vertical-align:top;">Stilte is ’n besluit</td>
-                <td style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; vertical-align:top;">Jy stel die voorwaardes</td>
+              <tr role="row" style="background:rgba(181,133,58,0.05);">
+                <td role="cell" data-label="Die situasie op jou lessenaar" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; vertical-align:top;">Die heronderhandeling wat jy stadig verloor, een klein toegewing op ’n slag</td>
+                <td role="cell" data-label="Wat dit gewoonlik is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; vertical-align:top;">Stilte is ’n besluit</td>
+                <td role="cell" data-label="Hoe beweging lyk" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; vertical-align:top;">Jy stel die voorwaardes</td>
               </tr>
             </tbody>
           </table>
@@ -625,7 +638,7 @@
 
     <div data-reveal style="position:relative; z-index:1; max-width:820px; margin:clamp(72px,10vw,108px) auto 0; padding-top:clamp(40px,5vw,56px); border-top:1px solid rgba(240,233,220,0.14);">
       <blockquote style="font-family:var(--hs-text); font-style:italic; font-weight:400; font-size:clamp(1.28rem,2.8vw,1.85rem); line-height:1.5; color:var(--hs-on-dark); margin:0;"><span style="font-family:var(--hs-serif); font-style:italic; color:var(--hs-goldb); font-size:1.5em; line-height:0; vertical-align:-0.22em; margin-right:3px;">“</span>Die leë boot kan bots sonder om woede te wek — want daar’s niemand binne wat eis dat die botsing iets moet beteken nie. Maar die boot het steeds ’n romp. Dit dryf steeds. Die leegheid is ’n prestasie, nie ’n gegewe nie.”</blockquote>
-      <div style="margin-top:24px; font-weight:700; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--hs-goldlbl-d);">Zhuangzi</div>
+      <div style="margin-top:24px; font-weight:700; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--hs-goldlbl-d);">Na Zhuangzi</div>
     </div>
 
     <div style="position:relative; z-index:1; max-width:1000px; margin:clamp(56px,8vw,84px) auto 0; padding-top:clamp(26px,4vw,36px); border-top:1px solid rgba(240,233,220,0.12); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; text-align:left;">

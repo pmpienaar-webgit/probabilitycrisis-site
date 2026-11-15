@@ -60,7 +60,6 @@ PAGES = [
     "index.html",
     "index.af.html",
     "index.zh.html",
-    "index-primary.html",
     "keystone-read.html",
     "keystone-read.af.html",
     "keystone-read.zh.html",
