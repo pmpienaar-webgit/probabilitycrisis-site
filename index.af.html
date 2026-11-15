@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <title>The Probability Crisis — Michael Pienaar · Fraksionele advies · Kaapstad</title>
 <meta name="description" content="Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Michael Pienaar","url":"https://probabilitycrisis.com/","jobTitle":"Fraksionele raadgewer","description":"Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.","email":"mailto:michaelp@probabilitycrisis.com","address":{"@type":"PostalAddress","addressLocality":"Cape Town","addressCountry":"ZA"},"sameAs":["https://linkedin.com/in/michael-pienaar-93319710"],"knowsLanguage":["en","af","zh"],"brand":{"@type":"Brand","name":"The Probability Crisis"},"@id":"https://probabilitycrisis.com/#michael"},{"@type":"ProfessionalService","@id":"https://probabilitycrisis.com/#practice","name":"The Probability Crisis","url":"https://probabilitycrisis.com/","description":"Advies (Strategie, Bestuur, Bedryf)","knowsAbout":["Strategie","Bestuur","Bedryf","Verkryging","Onderhandeling","Voorsieningsketting"],"founder":{"@id":"https://probabilitycrisis.com/#michael"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Michael Pienaar","url":"https://probabilitycrisis.com/","image":"https://probabilitycrisis.com/assets/michael-pienaar-portrait.jpg","jobTitle":"Fraksionele raadgewer","description":"Fraksionele advies (strategie, bestuur, bedryf), Kaapstad. Maatskappye brand vas — besluite sleep, projekte staan stil, verskaffers oorvra. Ek kry die een plek waar ’n klein stootjie alles laat beweeg. 21 jaar binne die groot sakewêreld, die meeste daarvan by groot kleinhandelaars, insluitend aan die stuur van verkryging.","email":"mailto:michaelp@probabilitycrisis.com","address":{"@type":"PostalAddress","addressLocality":"Cape Town","addressCountry":"ZA"},"sameAs":["https://linkedin.com/in/michael-pienaar-93319710"],"knowsLanguage":["en","af"],"brand":{"@type":"Brand","name":"The Probability Crisis"},"@id":"https://probabilitycrisis.com/#michael"},{"@type":"ProfessionalService","@id":"https://probabilitycrisis.com/#practice","name":"The Probability Crisis","url":"https://probabilitycrisis.com/","description":"Advies (Strategie, Bestuur, Bedryf)","knowsAbout":["Strategie","Bestuur","Bedryf","Verkryging","Onderhandeling","Voorsieningsketting"],"founder":{"@id":"https://probabilitycrisis.com/#michael"}}]}</script>
 <link rel="alternate" hreflang="en" href="https://probabilitycrisis.com/">
 <link rel="alternate" hreflang="zh-Hans" href="https://probabilitycrisis.com/index.zh.html">
 <link rel="alternate" hreflang="af" href="https://probabilitycrisis.com/index.af.html">
@@ -149,6 +149,32 @@
       .pc-fam td{padding:5px 18px !important;border-bottom:0 !important;}
       .pc-fam td::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--hs-sans);font-style:normal;font-weight:700;font-size:11px;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;color:var(--hs-gray);}
     }
+    /* "Why I do this": the photograph block. Phones (700px and narrower) get the tight
+       portrait in an arch, stacked above the words; wider screens get the wide crop in a
+       gold hairline frame, beside the words from 960px. Colour as shot. aspect-ratio holds
+       the image's space in each case so nothing shifts when it loads. */
+    .pc-why{background:var(--hs-ground);color:var(--hs-on-dark);padding:clamp(74px,9vw,116px) clamp(22px,5vw,40px);}
+    .pc-why-in{max-width:1060px;margin:0 auto;}
+    .pc-why-eyebrow{font-weight:700;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--hs-goldb);margin:0;}
+    .pc-why-rule{width:58px;height:2px;background:var(--hs-gold);margin:20px 0 0;}
+    .pc-why-pic{display:block;width:100%;max-width:320px;margin:26px 0 0;padding:8px;border:1px solid var(--hs-goldb);border-radius:999px 999px 0 0;}
+    .pc-why-pic img{display:block;width:100%;height:auto;aspect-ratio:560/700;object-fit:cover;border-radius:999px 999px 0 0;}
+    .pc-why-txt{margin:26px 0 0;}
+    .pc-why-body{font-family:var(--hs-text);font-size:clamp(1.18rem,2.4vw,1.5rem);line-height:1.5;color:var(--hs-on-dark);margin:0;max-width:46ch;}
+    .pc-why-sig{font-family:var(--hs-serif);font-style:italic;font-weight:400;font-size:clamp(1.05rem,1.6vw,1.18rem);line-height:1.4;color:var(--hs-on-dark-2);margin:24px 0 0;}
+    /* The seam to the dark section below: that section sets its border inline, hence !important. */
+    .pc-why + section{border-top-color:rgba(240,233,220,0.14) !important;}
+    @media (min-width:701px){
+      .pc-why-pic{max-width:520px;border-radius:0;}
+      .pc-why-pic img{aspect-ratio:985/700;border-radius:0;}
+    }
+    @media (min-width:960px){
+      .pc-why-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto auto auto 1fr;grid-template-areas:"pic ." "pic eye" "pic rule" "pic txt" "pic .";column-gap:clamp(32px,5vw,64px);}
+      .pc-why-eyebrow{grid-area:eye;}
+      .pc-why-rule{grid-area:rule;}
+      .pc-why-pic{grid-area:pic;align-self:center;max-width:none;margin:0;}
+      .pc-why-txt{grid-area:txt;margin-top:26px;}
+    }
 </style>
 </head>
 <body>
@@ -247,7 +273,7 @@
         <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">Die 30-sekonde-weergawe</div>
         <h2 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.95rem,5.2vw,2.85rem); line-height:1.12; letter-spacing:-0.012em; color:var(--hs-ink); margin:14px 0 0; max-width:22ch; text-wrap:balance;">As jy niks anders lees nie, lees <em style="font-style:italic; font-weight:700; color:var(--hs-goldd);">dít.</em></h2>
         <div style="width:58px; height:2px; background:var(--hs-gold); margin:20px 0 0;"></div>
-        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael is ’n <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fraksioneel</span><span class="d">Senior vermoë sonder die voltydse aanstelling, ingespan presies waar dit saak maak &mdash; geprys volgens die probleem, geen firma daarrondom nie.</span></span>fraksionele</a> raadgewer vir groot en middelgroot besighede, asook kleiner besighede wat nog deur hul stigters bestuur word. Wanneer besluite maande aansleep, projekte stilstaan, verskaffers oorvra en spanne mekaar blameer, kry hy die een plek waar ’n klein stootjie die hele ding aan die beweeg kry. Dit sit gewoonlik in die gaping tussen ’n goeie plan en om dit gedaan te kry. Meestal werk hy self saam, dwarsoor afdelings &mdash; in aankope, in die operasionele detail, in die beplanning en in die besluite wat tussen spanne vasval. Die resultaat is iets wat jy kan uitwys: die besluit geteken, die toekenning uit, die projek aan die beweeg. Een-en-twintig jaar binne die groot sakewêreld het hom geleer waar om te kyk. <a href="mailto:michaelp@probabilitycrisis.com?subject=Eerste%20gesprek"><span style="color:var(--hs-gold-text); font-style:italic; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px;">Die eerste gesprek is gratis en daar’s geen verkoopspraatjie nie.</span></a></p>
+        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael Pienaar is ’n <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fraksioneel</span><span class="d">Senior vermoë sonder die voltydse aanstelling, ingespan presies waar dit saak maak &mdash; geprys volgens die probleem, geen firma daarrondom nie.</span></span>fraksionele</a> raadgewer vir groot en middelgroot besighede, asook kleiner besighede wat nog deur hul stigters bestuur word. Wanneer besluite maande aansleep, projekte stilstaan, verskaffers oorvra en spanne mekaar blameer, kry hy die een plek waar ’n klein stootjie die hele ding aan die beweeg kry. Dit sit gewoonlik in die gaping tussen ’n goeie plan en om dit gedaan te kry. Meestal werk hy self saam, dwarsoor afdelings &mdash; in aankope, in die operasionele detail, in die beplanning en in die besluite wat tussen spanne vasval. Die resultaat is iets wat jy kan uitwys: die besluit geteken, die toekenning uit, die projek aan die beweeg. Een-en-twintig jaar binne die groot sakewêreld het hom geleer waar om te kyk. <a href="mailto:michaelp@probabilitycrisis.com?subject=Eerste%20gesprek"><span style="color:var(--hs-gold-text); font-style:italic; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px;">Die eerste gesprek is gratis en daar’s geen verkoopspraatjie nie.</span></a></p>
       </div>
 
       <!-- Problem table -->
@@ -353,6 +379,23 @@
         <div style="margin-top:30px; text-align:center; font-family:var(--hs-sans); font-size:0.98rem; color:var(--hs-gray);">Dis die kort weergawe. Die hele storie is hieronder.</div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ============ WHY I DO THIS · Midnight, the photograph ============ -->
+  <section class="pc-why" data-ground="dark" aria-labelledby="pc-why-h">
+    <div class="pc-why-in" data-reveal>
+      <h2 class="pc-why-eyebrow" id="pc-why-h">Hoekom ek dit doen</h2>
+      <div class="pc-why-rule"></div>
+      <picture class="pc-why-pic">
+        <source media="(min-width:701px)" type="image/webp" srcset="assets/michael-pienaar-wide.webp" width="985" height="700">
+        <source type="image/webp" srcset="assets/michael-pienaar-portrait.webp" width="560" height="700">
+        <img src="assets/michael-pienaar-portrait.jpg" width="560" height="700" loading="lazy" decoding="async" alt="Michael Pienaar voor ’n muurskildery">
+      </picture>
+      <div class="pc-why-txt">
+        <p class="pc-why-body">Ek het al te veel goeie werk sien stilstaan terwyl dit op een besluit wag. Om daardie besluit te vind en te sorg dat dit geneem word, is die nuttigste ding wat ek kan doen.</p>
+        <p class="pc-why-sig">Michael Pienaar</p>
+      </div>
     </div>
   </section>
 
