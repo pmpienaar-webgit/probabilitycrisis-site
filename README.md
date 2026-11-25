@@ -6,7 +6,7 @@
 - **Publish = push.** No separate deploy step. Live in ~90s; CDN caches 10 min (hard-refresh to verify).
 - **Transient deploy failures are a known GitHub Pages behaviour** (build succeeds, "Deploy to GitHub Pages" step fails — 3 occurrences 2026-07-03/04). Remedy: empty commit to retrigger. Watchers should check the RUN VERDICT via the Actions API, not just poll content — silence is not success.
 - **Source of truth chain:** **this repo is the source of truth.** `Prob Crisis\Website\index*.html` / `keystone-read.html` are deploy mirrors, refreshed FROM the repo at ship — never edited as sources. `Prob Crisis\Website\hook-layer-draft\*.hook.html` are historical working files.
-- **PDFs are compiled artifacts** — edit the HTML source, re-render via Chrome headless `--print-to-pdf` (ABSOLUTE paths — relative output paths fail silently), then copy here. `what-i-do.pdf` = the boutique edition (house standard: dark full-bleed cover, cream full-bleed body). `profile.pdf` = the one-pager (30-Second-Gate + Barrage certified).
+- **PDFs are compiled artifacts** — edit the HTML source, re-render via Chrome headless `--print-to-pdf` (ABSOLUTE paths — relative output paths fail silently), then copy here. `what-i-do.pdf` = the boutique edition (house standard: dark full-bleed cover, cream full-bleed body). `profile.pdf` = the one-pager (30-Second-Gate + Barrage certified). The pre-push hook reads the text inside every tracked PDF before a push (see `CLAUDE.md`).
 - **Standing promises this site carries** (audited by the Adversarial Barrage): "the first conversation is free and there's no pitch" (permanent policy) · the Keystone Read's "nothing leaves the page" (zero network calls — re-verify the zero-external-request property on every substantive change).
 - **DNS**: zone on Google nameservers; MX = Google Workspace (live email — never touch); A records → GitHub Pages IPs; CNAME file pins the domain.
 
@@ -15,7 +15,7 @@
 - `_config.yml` exists only to make Jekyll serve `.well-known/security.txt`; the pages carry no front matter.
 
 ## Contents
-`index.html` (Hybrid cut, the lead) · `keystone-read.html` (the instrument) · `profile.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `assets/film/` (the keystone film and its poster, shown on the three home pages; the CSP allows video, `media-src 'self'`, on the home pages only) · `CNAME` · `robots.txt`
+`index.html` (Hybrid cut, the lead) · `keystone-read.html` (the instrument) · `profile.pdf` · `overview.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `assets/film/` (the keystone film and its poster, shown on the three home pages; the CSP allows video, `media-src 'self'`, on the home pages only) · `CNAME` · `robots.txt`
 
 ## Translations
 `index.html` is the canonical English source, forever; `index.zh.html` (Simplified Mandarin) and `index.af.html` (Afrikaans) are derived artifacts, never edited independently of it — the same holds for `keystone-read.zh.html` / `keystone-read.af.html` against `keystone-read.html`. The manifest at `.github/i18n/manifest.json` records the exact source commit each translation derives from. **Run `python .github/i18n/check.py` before any site work** — it flags drift between the source and each translation's recorded base. On STALE: `git diff <base>..HEAD -- index.html`, translate only the delta, patch the translation, then bump `base` in the manifest to the new hash.

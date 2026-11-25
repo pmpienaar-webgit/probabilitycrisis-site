@@ -23,6 +23,14 @@ must reinstall it) refuses any push while either check fails, or while the
 mobile number or a dialable `tel:` link sits in tracked files. Fix what it
 names; never bypass it.
 
+The hook has a fourth limb for PDFs. `git grep` cannot read the compressed
+streams inside a PDF, so the untracked script `.git/hooks/pdf_text_guard.py`
+extracts the text and link addresses of every tracked PDF and refuses the push
+if either carries the owner's mobile number or a dialable phone link. It fails
+closed: a PDF it cannot open or read also stops the push (proven 2026-11-25 by
+refusing a planted number, a planted phone link and a corrupt file). A fresh
+clone must reinstall this script beside the hook.
+
 ## Standing promises — published, so breaking them is outward
 
 - **Nothing leaves the page.** The CSP is hash-based with `connect-src 'none'`:
