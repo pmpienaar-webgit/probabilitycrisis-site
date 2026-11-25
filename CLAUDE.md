@@ -28,6 +28,8 @@ names; never bypass it.
 - **Nothing leaves the page.** The CSP is hash-based with `connect-src 'none'`:
   no external requests, no CDN, no analytics, ever. The dependency set is
   closed; adding any external resource is Michael's ruling, not a judgment call.
+  Video is allowed on the three home pages only (`media-src 'self'`, the film
+  in `assets/film/`); the keystone-read pages keep `media-src 'none'`.
 - **Email is the one contact channel online** (ruling 2026-07-27). No mobile
   number, no dialable `tel:` links on any public surface. The hook greps for
   the number and for `tel:` followed by a digit.

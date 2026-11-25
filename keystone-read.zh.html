@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JxwpS5xt7XoiW2WDkgWO8XyCBGs6DeAmwa9tEIta+Qs=' 'sha256-tFwgB0vIhfebfiooykdp5c8oTVNpWqAP2I4ygVV7mJ4='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'none'; object-src 'none'; frame-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-QTfm7G+Qhz0DAKPvBox+Ps10dpuWMpxqGatwmFhsY6Y=' 'sha256-tFwgB0vIhfebfiooykdp5c8oTVNpWqAP2I4ygVV7mJ4='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'none'; object-src 'none'; frame-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://probabilitycrisis.com/keystone-read.zh.html">
 <meta property="og:type" content="website">
@@ -129,10 +129,10 @@
       </svg>
     </div>
     <div style="font-weight:700; font-size:12px; letter-spacing:0.30em; text-transform:uppercase; color:var(--hs-goldb);">一件工具 &middot; 为卡住的人而设</div>
-    <h1 id="kr-intro-title" tabindex="-1" style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,7vw,4rem); line-height:1.06; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:18px auto 0; text-wrap:balance;">找到您的<em style="font-style:normal; font-weight:800; color:var(--hs-goldb);">关键点</em>。</h1>
+    <h1 id="kr-intro-title" tabindex="-1" style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,7vw,4rem); line-height:1.06; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:18px auto 0; text-wrap:balance;">找到您的<em style="font-style:normal; font-weight:800; color:var(--hs-goldb);">关键点</em>：唯一要推的那一处。</h1>
     <div style="width:64px; height:2px; background:var(--hs-gold); margin:26px auto 0;"></div>
     <p style="font-family:var(--hs-text); font-style:normal; font-size:clamp(1.15rem,2.2vw,1.4rem); line-height:1.5; color:var(--hs-on-dark-2); margin:24px auto 0; max-width:40ch;">五个问题，一次坦诚的解读<span class="zh-dash">——</span>小而精准的介入落在哪里，才能让整个系统重新动起来。</p>
-    <p style="font-weight:700; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-goldlbl-d); margin:18px auto 0;">不推销 &middot; 不留数据 &middot; 内容不出本页</p>
+    <p style="font-weight:700; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-goldlbl-d); margin:18px auto 0;">不推销 &middot; 不留数据 &middot; 除非您选择发送，否则内容不出本页</p>
     <button id="kr-begin" class="kr-begin" style="margin-top:clamp(34px,5vw,46px); background:var(--hs-gold); color:#1b1813; font-family:var(--hs-sans); font-weight:700; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; padding:18px 38px; border:0; border-radius:0; cursor:pointer; transition:background-color .25s ease;">开始解读 &rarr;</button>
   </div>
 
@@ -364,7 +364,10 @@
       + '显现之处：' + L.symptom + '\n我试过的：' + L.tried + '\n时间：' + L.pace + '\n阻力所在：' + L.friction + '\n松动后的样子：' + L.win + '\n\n'
       + '可能的关键点：' + (KEYSTONE[a.symptom]||'') + '\n'
       + '介入的形态：' + (SHAPE[a.pace]||'') + '\n';
-    el('kr-cta').setAttribute('href', 'mailto:michaelp@probabilitycrisis.com?subject=' + encodeURIComponent('关键点解读') + '&body=' + encodeURIComponent(carry));
+    var mailBody = carry
+      + '\n是谁建议我来信的（愿意的话可以写上）：\n\n'
+      + '如果 WhatsApp 对我更方便，我的号码：\n';
+    el('kr-cta').setAttribute('href', 'mailto:michaelp@probabilitycrisis.com?subject=' + encodeURIComponent('关键点解读') + '&body=' + encodeURIComponent(mailBody));
   }
 
   function krToast(msg) {

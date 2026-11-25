@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BG8sZaYOhUHPs+qAoNbdEzFZZhtAXHbE4PjietMaUE0=' 'sha256-kEbmTo+8y3d60XoPB878on9JGjqRGh6iZj8+Iivy/z8=' 'sha256-ymFHThSrd+ltQB48IUXnoTgHJ3sENH/PoDUAGWSsTcw=' 'sha256-TbLPdv8hiWYFE+x1y/wxwOJOOUtwQRCx0ul+oiJi8mU='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'none'; object-src 'none'; frame-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BG8sZaYOhUHPs+qAoNbdEzFZZhtAXHbE4PjietMaUE0=' 'sha256-kEbmTo+8y3d60XoPB878on9JGjqRGh6iZj8+Iivy/z8=' 'sha256-Jb7ot1C0Y7C3EOB7Y7Rsn7HkJ8x7elBusJokPyBJhwU='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'none'; object-src 'none'; frame-src 'none'; media-src 'self'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://probabilitycrisis.com/">
 <meta property="og:type" content="website">
@@ -83,31 +83,15 @@
       .pc-menulink:hover{color:var(--hs-gold-text);}
       .pc-card:hover{border-color:var(--hs-gold);}
       .pc-cta:hover{background:#a8762f;}
-      .pc-herolink:hover{color:#f0e9dc;}
       .pc-contactlink:hover{color:var(--hs-goldb);border-color:var(--hs-goldb);}
       .pc-dllink:hover{color:var(--hs-goldb);}
       .pc-reachlink:hover{color:var(--hs-gold-text);border-color:var(--hs-gold);}
       .pc-dlrow:hover{color:var(--hs-gold-text);}
       .pc-keystone-link:hover{border-color:var(--hs-gold);color:var(--hs-gold-text);}
     }
-    /* The one glossed word on this site. It stays the only one. */
-    .pc-gloss{position:relative;cursor:help;border-bottom:1px dotted var(--hs-gold);text-decoration:none;color:inherit;}
-    /* The ring now comes from the shared a:focus-visible rule above; :focus still opens the popover. */
-    .pc-gloss .pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(340px,82vw);background:var(--hs-card);border:1px solid var(--hs-hair);border-top:2px solid var(--hs-gold);border-radius:6px;padding:14px 18px 15px;z-index:30;display:none;opacity:0;visibility:hidden;transition:opacity .18s ease,display .18s allow-discrete;box-shadow:none;text-align:left;}
-    .pc-gloss .pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--hs-hair);}
-    .pc-gloss .pop.below{bottom:auto;top:calc(100% + 10px);}
-    .pc-gloss .pop.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--hs-hair);}
-    .pc-gloss .pop .k{display:block;font-family:var(--hs-sans);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--hs-gold-text);margin-bottom:7px;}
-    .pc-gloss .pop .d{font-family:var(--hs-text);font-style:normal;font-size:16.5px;line-height:1.5;color:var(--hs-ink2);}
-    .pc-gloss:focus .pop,.pc-gloss.open .pop{display:block;opacity:1;visibility:visible;}
-@starting-style{.pc-gloss .pop{opacity:0;}}
 #thirty{overflow-x:clip;}
-    @media (hover: hover) and (pointer: fine){
-      .pc-gloss:hover .pop{display:block;opacity:1;visibility:visible;}
-    }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important;}
-      .pc-gloss .pop{transition:none;}
     }
     /* Language selector — ported from the zh pc-langsel component. Desktop rides the header over the dark hero, so its links mirror the nav's own inherit colour (adapts light/dark); current sits in the on-dark gold accent (--hs-goldb, the hero's own emphasis gold). */
     .pc-langsel{display:none;align-items:center;gap:12px;font-family:var(--hs-sans);white-space:nowrap;}
@@ -135,23 +119,111 @@
     @media (hover: hover) and (pointer: fine){.pc-langsel-hero a:hover{opacity:0.62;}}
     .pc-langsel-hero .sep{opacity:0.4;letter-spacing:0;}
     @media(min-width:860px){.pc-langsel-hero{display:none;}}
-    /* "Sound familiar?" on a phone (600px and narrower): each row stacks into a block and
-       each cell shows its column header (data-label) above it in the small-caps label
-       style. The header row leaves the layout but stays with screen readers. The cells
-       carry inline padding and borders, hence !important on those two only. */
-    @media (max-width:600px){
-      .pc-fam{min-width:0 !important;position:relative;}
-      .pc-fam,.pc-fam tbody,.pc-fam tr,.pc-fam td{display:block;}
-      .pc-fam thead{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
-      .pc-fam tr{padding:9px 0;border-bottom:1px solid var(--hs-hair);}
-      .pc-fam tr:last-child{border-bottom:0;}
-      .pc-fam td{padding:5px 18px !important;border-bottom:0 !important;}
-      .pc-fam td::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--hs-sans);font-style:normal;font-weight:700;font-size:11px;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;color:var(--hs-gray);}
+    /* ---- The door (25 Nov 2026): the first screen, the seven situations, "Check me first"
+       and "The first half hour". Every class below is new; the af and zh pages copy the block whole. ---- */
+    /* The gold button: the primary call to action as a class (the same values the inline .pc-cta buttons carry). */
+    .pc-btn{display:inline-block;max-width:100%;background:var(--hs-gold);color:#1b1813;font-family:var(--hs-sans);font-weight:700;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;padding:18px clamp(24px,6vw,38px);border-radius:0;transition:background-color .25s ease;}
+    /* First screen: the seal, the rule, the result sentence, the byline (photograph in an arch: half-circle top, square foot),
+       the button and the small mail link. Phones (700px and narrower) tighten the spacing so the headline,
+       the result sentence, the byline and the button all fit a 375 x 812 screen; the headline keeps its size. */
+    .pc-hero-seal{display:flex;justify-content:center;margin-bottom:30px;}
+    .pc-hero-rule{width:64px;height:2px;background:var(--hs-gold);margin:32px auto 0;}
+    .pc-hero-result{font-family:var(--hs-text);font-style:italic;font-size:clamp(1.18rem,2.5vw,1.55rem);line-height:1.5;color:var(--hs-on-dark-2);margin:24px auto 0;max-width:46ch;text-wrap:balance;}
+    .pc-byline{display:flex;align-items:center;justify-content:center;gap:16px;max-width:31rem;margin:22px auto 0;text-align:left;}
+    .pc-byline-pic{flex:none;display:block;padding:2px;border:1px solid rgba(224,184,112,0.55);border-radius:9999px 9999px 0 0;overflow:hidden;}
+    .pc-byline-pic img{display:block;width:64px;height:auto;border-radius:9999px 9999px 0 0;}
+    .pc-byline-txt{min-width:0;}
+    .pc-byline-name{font-family:var(--hs-serif);font-weight:700;font-size:1.02rem;line-height:1.25;color:var(--hs-on-dark);margin:0;}
+    .pc-byline-line{font-family:var(--hs-sans);font-size:0.84rem;line-height:1.45;color:var(--hs-on-dark-2);margin:3px 0 0;}
+    .pc-hero-act{margin:clamp(26px,3vw,32px) auto 0;}
+    .pc-hero-mail{margin:16px auto 0;font-family:var(--hs-sans);font-size:0.9rem;line-height:1.5;}
+    .pc-hero-mail a{color:var(--hs-on-dark-2);border-bottom:1px solid rgba(240,233,220,0.3);padding-bottom:2px;}
+    @media (max-width:700px){
+      .pc-hero-seal{margin-bottom:14px;}
+      .pc-hero-seal svg{width:36px;height:36px;}
+      .pc-hero-rule{margin-top:20px;}
+      .pc-hero-result{margin-top:16px;}
+      .pc-byline{gap:12px;margin-top:14px;}
+      .pc-byline-pic{padding:0;}
+      .pc-byline-name{font-size:0.96rem;}
+      .pc-byline-line{font-size:0.8rem;line-height:1.38;margin-top:2px;}
+      .pc-hero-act{margin-top:12px;}
     }
-    /* "Why I do this": the photograph block. Phones (700px and narrower) get the tight
-       portrait in an arch, stacked above the words; wider screens get the wide crop in a
-       gold hairline frame, beside the words from 960px. Colour as shot. aspect-ratio holds
-       the image's space in each case so nothing shifts when it loads. */
+    /* First-screen polish (25 Nov 2026). Phones (600px and narrower): the drawing sits at half strength so its
+       dashed flight path stays quiet behind the byline. Short laptop screens: tighter vertical spacing and a
+       headline 12 percent smaller, so everything down to the gold button shows without scrolling. */
+    @media (max-width:600px){
+      #top>div[aria-hidden="true"][style*="opacity:0.4"]{opacity:0.2 !important;}
+    }
+    @media (min-width:701px) and (max-height:960px){
+      #top{padding-top:80px !important;}
+      .pc-hero-seal{margin-bottom:14px;}
+      .pc-hero-seal svg{width:40px;height:40px;}
+      #top h1{font-size:clamp(2.2rem,6.16vw,4.05rem) !important;margin-top:14px !important;}
+      .pc-hero-rule{margin-top:18px;}
+      .pc-hero-result{margin-top:14px;}
+      .pc-byline{margin-top:14px;}
+      .pc-hero-act{margin-top:18px;}
+    }
+    /* The seven situations: one <details name="pc-sit"> each. They open and close without motion. */
+    .pc-sit-h{font-family:var(--hs-serif);font-weight:700;font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.12;letter-spacing:-0.012em;color:var(--hs-ink);margin:0;max-width:22ch;text-wrap:balance;}
+    .pc-sit-h em{font-style:italic;font-weight:700;color:var(--hs-goldd);}
+    .pc-sit-lede{font-family:var(--hs-text);font-size:clamp(1.18rem,2.4vw,1.5rem);line-height:1.5;color:var(--hs-ink);margin:18px 0 0;max-width:46ch;}
+    .pc-sit-note{font-family:var(--hs-text);font-style:italic;font-size:clamp(0.98rem,1.3vw,1.06rem);line-height:1.5;color:var(--hs-taupe);margin:10px 0 0;max-width:60ch;}
+    .pc-sits{margin-top:clamp(28px,4vw,40px);}
+    .pc-sit-list{border-top:2px solid var(--hs-gold);}
+    .pc-sit{border-bottom:1px solid var(--hs-hair);}
+    .pc-sit[open]{background:var(--hs-card);}
+    .pc-sit>summary{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"what mark" "often mark" "move mark";column-gap:16px;row-gap:4px;align-items:center;min-height:44px;padding:16px clamp(12px,2vw,18px);cursor:pointer;list-style:none;}
+    .pc-sit>summary::-webkit-details-marker{display:none;}
+    .pc-sit>summary::after{grid-area:mark;content:"+";content:"+" / "";font-family:var(--hs-serif);font-size:1.5rem;line-height:1;color:var(--hs-goldd);}
+    .pc-sit[open]>summary::after{content:"\2212";content:"\2212" / "";}
+    .pc-sit>summary:focus-visible{outline:none;box-shadow:0 0 0 2px var(--pc-focus-inner),0 0 0 4px var(--pc-focus-outer);border-radius:4px;}
+    .pc-sit-what{grid-area:what;display:block;font-family:var(--hs-text);font-size:clamp(1.08rem,1.6vw,1.2rem);line-height:1.4;color:var(--hs-ink);}
+    .pc-sit-often,.pc-sit-move{display:block;font-family:var(--hs-sans);font-size:0.88rem;line-height:1.45;color:var(--hs-gray);}
+    .pc-sit-often{grid-area:often;}
+    .pc-sit-move{grid-area:move;}
+    .pc-sit-out{font-weight:700;color:var(--hs-gold-text);}
+    .pc-sit-body{padding:2px clamp(12px,2vw,18px) 24px;}
+    .pc-sit-story{font-family:var(--hs-sans);font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem);line-height:1.6;color:var(--hs-ink2);margin:0 0 18px;max-width:60ch;}
+    .pc-sit-tag{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--hs-gray);white-space:nowrap;}
+    .pc-sit-more{margin-top:clamp(24px,3vw,32px);}
+    .pc-textlink{color:var(--hs-ink);border-bottom:1px solid var(--hs-gold);padding-bottom:2px;}
+    .pc-sit-more .pc-textlink{font-family:var(--hs-sans);font-size:clamp(1rem,0.4vw+0.92rem,1.08rem);line-height:1.6;}
+    .pc-prob{font-weight:700;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--hs-gold-text);margin:14px 0 0;}
+    @media (min-width:701px){
+      .pc-sit>summary{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto;grid-template-areas:"what often mark" "what move mark";column-gap:28px;}
+    }
+    /* "Check me first" and "The first half hour": two cards, side by side where there is room. */
+    .pc-trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(18px,2.4vw,26px);margin-top:clamp(48px,6vw,72px);align-items:start;}
+    .pc-panel{background:var(--hs-card);border:1px solid var(--hs-hair);border-top:2px solid var(--hs-gold);border-radius:0 0 6px 6px;padding:clamp(24px,3vw,34px);}
+    .pc-panel-h{font-family:var(--hs-serif);font-weight:700;font-size:clamp(1.4rem,3vw,1.85rem);line-height:1.15;color:var(--hs-ink);margin:0;}
+    .pc-check-list{margin:14px 0 0;padding:0 0 0 1.5em;font-family:var(--hs-sans);font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem);line-height:1.6;color:var(--hs-ink2);}
+    .pc-check-list li{padding-left:4px;margin-top:10px;}
+    .pc-check-list li::marker{font-family:var(--hs-serif);font-weight:700;color:var(--hs-goldd);}
+    .pc-half-free{font-family:var(--hs-serif);font-style:italic;font-weight:500;font-size:clamp(1.2rem,2.4vw,1.4rem);line-height:1.35;color:var(--hs-gold-text);margin:10px 0 0;}
+    .pc-half-line{font-family:var(--hs-sans);font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem);line-height:1.6;color:var(--hs-ink2);margin:12px 0 0;}
+    .pc-half-line strong{color:var(--hs-ink);}
+    .pc-half-act{margin-top:24px;}
+    /* Small print: .pc-fine on cream, .pc-fine-d on the dark contact ground. */
+    .pc-fine{font-family:var(--hs-sans);font-size:0.86rem;line-height:1.55;color:var(--hs-gray);margin:10px 0 0;max-width:56ch;}
+    .pc-fine-d{font-family:var(--hs-sans);font-size:0.86rem;line-height:1.55;color:var(--hs-on-dark-2);margin:10px auto 0;max-width:52ch;}
+    .pc-contact-notes{margin-top:26px;}
+    /* The Zhuangzi line, moved from the contact section to the end of "How I think" (cream ground). */
+    .pc-quote{max-width:820px;margin:clamp(56px,8vw,88px) 0 0;padding-top:clamp(32px,4vw,44px);border-top:1px solid var(--hs-border);}
+    .pc-quote blockquote{font-family:var(--hs-text);font-style:italic;font-weight:400;font-size:clamp(1.28rem,2.8vw,1.85rem);line-height:1.5;color:var(--hs-ink);margin:0;}
+    .pc-quote-mark{font-family:var(--hs-serif);font-style:italic;color:var(--hs-goldd);font-size:1.5em;line-height:0;vertical-align:-0.22em;margin-right:3px;}
+    .pc-quote-by{margin-top:22px;font-weight:700;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--hs-gold-text);}
+    @media (hover: hover) and (pointer: fine){
+      .pc-btn:hover{background:var(--hs-goldd);}
+      .pc-textlink:hover{color:var(--hs-gold-text);}
+      .pc-hero-mail a:hover{color:var(--hs-on-dark);border-color:var(--hs-goldb);}
+      .pc-sit>summary:hover .pc-sit-what{color:var(--hs-gold-text);}
+    }
+    /* "Why I do this": the photograph block. Every screen gets the tight portrait (4 by 5) in an
+       arch inside its gold hairline frame, at most 320px wide: stacked above the words below 960px,
+       beside them from 960px, the words centred on the picture's height. Colour as shot.
+       aspect-ratio holds the image's space so nothing shifts when it loads. */
     .pc-why{background:var(--hs-ground);color:var(--hs-on-dark);padding:clamp(74px,9vw,116px) clamp(22px,5vw,40px);}
     .pc-why-in{max-width:1060px;margin:0 auto;}
     .pc-why-eyebrow{font-weight:700;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--hs-goldb);margin:0;}
@@ -163,17 +235,23 @@
     .pc-why-sig{font-family:var(--hs-serif);font-style:italic;font-weight:400;font-size:clamp(1.05rem,1.6vw,1.18rem);line-height:1.4;color:var(--hs-on-dark-2);margin:24px 0 0;}
     /* The seam to the dark section below: that section sets its border inline, hence !important. */
     .pc-why + section{border-top-color:rgba(240,233,220,0.14) !important;}
-    @media (min-width:701px){
-      .pc-why-pic{max-width:520px;border-radius:0;}
-      .pc-why-pic img{aspect-ratio:985/700;border-radius:0;}
-    }
     @media (min-width:960px){
-      .pc-why-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto auto auto 1fr;grid-template-areas:"pic ." "pic eye" "pic rule" "pic txt" "pic .";column-gap:clamp(32px,5vw,64px);}
+      .pc-why-in{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);grid-template-rows:1fr auto auto auto 1fr;grid-template-areas:"pic ." "pic eye" "pic rule" "pic txt" "pic .";column-gap:clamp(32px,5vw,64px);}
       .pc-why-eyebrow{grid-area:eye;}
       .pc-why-rule{grid-area:rule;}
-      .pc-why-pic{grid-area:pic;align-self:center;max-width:none;margin:0;}
+      .pc-why-pic{grid-area:pic;align-self:center;margin:0;}
       .pc-why-txt{grid-area:txt;margin-top:26px;}
     }
+    /* The film in "How I think" (25 Nov 2026): one native <video> with the browser's own controls. It never
+       plays by itself and loads nothing until it is played (preload="none"; only the poster is fetched). The
+       width and height attributes and aspect-ratio hold its space so the page does not jump. .pc-vh hides the
+       description that follows the figure from sight and keeps it for screen readers, met once in reading order. */
+    .pc-vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+    .pc-film{max-width:880px;margin:clamp(40px,5vw,58px) auto 0;}
+    .pc-film-fig{margin:0;}
+    .pc-film-v{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1280/716;background:var(--hs-ground);border:1px solid var(--hs-hair);border-radius:6px;}
+    .pc-film-cap{font-family:var(--hs-sans);font-size:clamp(1rem,0.4vw+0.92rem,1.1rem);line-height:1.6;color:var(--hs-ink2);margin:18px 0 0;max-width:60ch;}
+    .pc-film-credit{font-family:var(--hs-sans);font-size:0.72rem;line-height:1.5;color:var(--hs-gray);margin:6px 0 0;}
 </style>
 </head>
 <body>
@@ -226,7 +304,7 @@
 
   <!-- ============ FRONT DOOR · Midnight (centred) ============ -->
 <main id="main">
-  <section id="top" data-ground="dark" style="position:relative; overflow:hidden; background:var(--hs-ground); color:var(--hs-on-dark); min-height:clamp(600px,95vh,950px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:118px clamp(22px,5vw,40px) 96px;">
+  <section id="top" data-ground="dark" style="position:relative; overflow:hidden; background:var(--hs-ground); color:var(--hs-on-dark); min-height:clamp(600px,95vh,950px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:clamp(96px,14vw,118px) clamp(22px,5vw,40px) clamp(56px,10vw,96px);">
   <div class="pc-langsel-hero" role="group" aria-label="Language">
       <span class="cur" aria-current="page" lang="en">EN</span>
       <span class="sep" aria-hidden="true">·</span>
@@ -249,112 +327,166 @@
       </svg>
     </div>
     <div data-reveal style="position:relative; z-index:1; max-width:900px;">
-      <div style="display:flex; justify-content:center; margin-bottom:30px;">
+      <div class="pc-hero-seal">
         <svg width="50" height="50" viewBox="0 0 96 96" role="img" aria-label="The Probability Crisis seal"><circle cx="48" cy="48" r="44" fill="none" stroke="#b5853a" stroke-width="2.2"></circle><path d="M28,64 C42,62 56,60 70,58" stroke="#95896c" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M28,64 C40,58 50,46 68,26" stroke="#b5853a" stroke-width="3.6" fill="none" stroke-linecap="round"></path><circle cx="28" cy="64" r="2.4" fill="#95896c"></circle><circle cx="70" cy="58" r="2.6" fill="#95896c"></circle><circle cx="68" cy="26" r="4" fill="#b5853a"></circle></svg>
       </div>
       <div style="font-weight:700; font-size:12px; letter-spacing:0.30em; text-transform:uppercase; color:var(--hs-goldb);">Fractional advisory · Cape Town</div>
       <h1 style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,7vw,4.6rem); line-height:1.06; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:24px auto 0; max-width:26ch; text-wrap:balance;">Companies get stuck. I find the spot where a small push gets everything <em style="font-style:italic; font-weight:800; color:var(--hs-goldb);">moving.</em></h1>
-      <div style="width:64px; height:2px; background:var(--hs-gold); margin:32px auto 0;"></div>
-      <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.18rem,2.5vw,1.55rem); line-height:1.5; color:var(--hs-on-dark-2); margin:28px auto 0; max-width:52ch;">Decisions drag for months. Projects stall. Suppliers overcharge. Teams blame each other. Twenty-one years inside big business &mdash; most of it big retail, including running procurement &mdash; taught me where to look.</p>
-      <div style="margin:clamp(34px,4.5vw,44px) auto 0;">
-        <a href="keystone-read.html" class="pc-cta" style="display:inline-block; background:var(--hs-gold); color:#1b1813; font-family:var(--hs-sans); font-weight:700; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; padding:18px 38px; border-radius:0; transition:background-color .25s ease;">Find your keystone &mdash; the one spot to push &middot; 5 questions &rarr;</a>
+      <div class="pc-hero-rule"></div>
+      <p class="pc-hero-result">The result is something you can point at: the decision signed, the contract awarded, the date held.</p>
+      <div class="pc-byline">
+        <picture class="pc-byline-pic">
+          <source type="image/webp" srcset="assets/michael-pienaar-portrait.webp" width="560" height="700">
+          <img src="assets/michael-pienaar-portrait.jpg" width="560" height="700" loading="eager" decoding="async" alt="">
+        </picture>
+        <div class="pc-byline-txt">
+          <p class="pc-byline-name">Michael Pienaar</p>
+          <p class="pc-byline-line">Twenty-one years inside big business, most of it big retail: finance, operations, supply chain and procurement.</p>
+          <p class="pc-byline-line">My last corporate title was Head of Procurement: GNFR (the things a business buys to run itself, not to resell).</p>
+          <p class="pc-byline-line">I take on only a few clients at a time and do the work myself.</p>
+        </div>
+      </div>
+      <div class="pc-hero-act">
+        <a href="#thirty" data-scroll="thirty" class="pc-btn">Find your situation below &darr;</a>
+        <p class="pc-hero-mail"><a href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AWhat%20is%20stuck%20%28a%20line%20is%20enough%29%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Did someone send you? Write to me. The first half hour is free. &rarr;</a></p>
       </div>
     </div>
-    <div data-reveal style="position:relative; z-index:1; margin-top:clamp(40px,6vw,60px); font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-goldlbl-d);">Not a diagnosis. A probability.</div>
   </section>
 
   <!-- ============ THE SHORT VERSION · cream lane (hook layer) ============ -->
   <section id="thirty" data-ground="light" style="background:var(--hs-cream); padding:clamp(74px,9vw,116px) clamp(22px,5vw,40px); border-top:1px solid rgba(240,233,220,0.07);">
     <div style="max-width:1060px; margin:0 auto;">
 
-      <!-- Header + door sentence lede -->
+      <!-- Which of these is on your desk: the heading over the seven situations -->
       <div data-reveal>
-        <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">The 30-second read</div>
-        <h2 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.95rem,5.2vw,2.85rem); line-height:1.12; letter-spacing:-0.012em; color:var(--hs-ink); margin:14px 0 0; max-width:22ch; text-wrap:balance;">If you read nothing else, read <em style="font-style:italic; font-weight:700; color:var(--hs-goldd);">this.</em></h2>
-        <div style="width:58px; height:2px; background:var(--hs-gold); margin:20px 0 0;"></div>
-        <p style="font-family:var(--hs-text); font-size:clamp(1.18rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-ink); margin:26px 0 0; max-width:46ch;">Michael Pienaar is a <a href="#engage" class="pc-gloss" id="pc-gloss" aria-describedby="pc-gloss-pop"><span class="pop" id="pc-gloss-pop" role="tooltip"><span class="k">Fractional</span><span class="d">Senior capability without the full-time hire, deployed exactly where it matters &mdash; priced to the problem, no firm around it.</span></span>fractional</a> advisor to big and mid-size businesses, and to smaller ones still run by their founders. When decisions drag for months, projects stall, suppliers overcharge and teams blame each other, he finds the one spot where a small push gets the whole thing moving. It usually sits in the gap between a good plan and getting it done. Most often it is hands-on and cross-functional &mdash; in procurement, in the operational detail, in the decisions that stall between one team and the next. The result is something you can point at: the decision signed, the award out, the project moving. Twenty-one years inside big business taught him where to look. <a href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation"><span style="color:var(--hs-gold-text); font-style:italic; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px;">The first conversation is free: half an hour, and there&rsquo;s no pitch.</span></a></p>
+        <h2 class="pc-sit-h">Which of these is on your <em>desk?</em></h2>
+        <p class="pc-sit-lede">For big and mid-size businesses, and for smaller ones still run by their founders. Open the closest one.</p>
+        <p class="pc-sit-note">The short stories inside are composites: drawn from real work, with details changed so no client can be recognised.</p>
       </div>
 
-      <!-- Problem table -->
-      <div data-reveal style="margin-top:clamp(40px,5vw,58px);">
-        <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px 20px;">
-          <h3 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.4rem,3vw,1.85rem); line-height:1.15; color:var(--hs-ink); margin:0;">Sound <em style="font-style:italic; font-weight:700; color:var(--hs-goldd);">familiar?</em></h3>
-          <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-taupe);">Six that land on desks like yours</span>
+      <!-- The seven situations: each a <details> that opens with no script and no motion -->
+      <div class="pc-sits" data-reveal>
+        <div class="pc-sit-list">
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The capex approval on its third resubmission</span>
+              <span class="pc-sit-often">Often: nobody owns the no</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">signed this quarter</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20capex%20approval%20on%20its%20third%20resubmission.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The supplier decision stuck in review while the old contract quietly renews itself</span>
+              <span class="pc-sit-often">Often: the risk has no owner</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">the new contract signed</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <p class="pc-sit-story">The real blockage wasn&rsquo;t price. It was a risk nobody would put their name to. The award letter went out within weeks. <span class="pc-sit-tag">&middot; composite</span></p>
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20supplier%20decision%20stuck%20in%20review%20while%20the%20old%20contract%20quietly%20renews%20itself.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The org redesign everyone agrees with and nobody signs</span>
+              <span class="pc-sit-often">Often: two departments, one gap</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">one owner, one date</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20org%20redesign%20everyone%20agrees%20with%20and%20nobody%20signs.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The system go-live postponed a third quarter</span>
+              <span class="pc-sit-often">Often: &ldquo;ready&rdquo; was never defined</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">a date that holds</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <p class="pc-sit-story">We named the one owner and the one thing that actually had to be true before launch. The next date held. <span class="pc-sit-tag">&middot; composite</span></p>
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20system%20go-live%20postponed%20a%20third%20quarter.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The price increase you know you must pass on, and haven&rsquo;t</span>
+              <span class="pc-sit-often">Often: the talk nobody will start</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">the letter goes out</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20price%20increase%20I%20know%20I%20must%20pass%20on%2C%20and%20haven%E2%80%99t.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">The renegotiation you&rsquo;re losing slowly, one small concession at a time</span>
+              <span class="pc-sit-often">Often: silence is a decision</span>
+              <span class="pc-sit-move">Moving looks like: <span class="pc-sit-out">you set the terms</span></span>
+            </summary>
+            <div class="pc-sit-body">
+              <p class="pc-sit-story">They were losing ground to a much bigger company through silence: every week of no-decision was a concession. We built the evidence until the terms were theirs to set, not the other side&rsquo;s to grant. <span class="pc-sit-tag">&middot; composite</span></p>
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AThis%20one%20is%20on%20my%20desk%3A%20the%20renegotiation%20I%E2%80%99m%20losing%20slowly%2C%20one%20small%20concession%20at%20a%20time.%0D%0A%0D%0AMy%20version%2C%20in%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
+          <details class="pc-sit" name="pc-sit">
+            <summary>
+              <span class="pc-sit-what">Something else is stuck</span>
+            </summary>
+            <div class="pc-sit-body">
+              <p class="pc-sit-story">Tell me in a line. I&rsquo;ll say straight whether I can help.</p>
+              <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0ASomething%20else%20is%20stuck.%20In%20a%20line%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Tell me about yours &rarr;</a>
+              <p class="pc-fine">Opens your email with a short note started. Add a line in your own words.</p>
+            </div>
+          </details>
         </div>
-        <div style="margin-top:18px; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:6px; border:1px solid var(--hs-hair);">
-          <table class="pc-fam" role="table" style="width:100%; min-width:600px; border-collapse:collapse; font-variant-numeric:tabular-nums;">
-            <thead role="rowgroup">
-              <tr role="row">
-                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px;">The situation on your desk</th>
-                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:26%;">What it usually is</th>
-                <th role="columnheader" style="background:var(--hs-dark); color:var(--hs-on-dark); font-family:var(--hs-sans); font-weight:700; font-size:11px; letter-spacing:0.10em; text-transform:uppercase; text-align:left; padding:13px 18px; width:24%;">What moving looks like</th>
-              </tr>
-            </thead>
-            <tbody role="rowgroup">
-              <tr role="row" style="background:var(--hs-card);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The capex approval on its third resubmission</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Nobody owns the no</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Signed this quarter</td>
-              </tr>
-              <tr role="row" style="background:rgba(181,133,58,0.05);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The supplier decision stuck in review while the old contract quietly renews itself</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The risk has no owner</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The new contract signed</td>
-              </tr>
-              <tr role="row" style="background:var(--hs-card);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The org redesign everyone agrees with and nobody signs</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">Two functions, one gap</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">One owner, one date</td>
-              </tr>
-              <tr role="row" style="background:rgba(181,133,58,0.05);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The system go-live postponed a third quarter</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">&ldquo;Ready&rdquo; was never defined</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">A date that holds</td>
-              </tr>
-              <tr role="row" style="background:var(--hs-card);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The price increase you know you must pass on, and haven&rsquo;t</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The talk nobody will start</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; border-bottom:1px solid var(--hs-hair); vertical-align:top;">The letter goes out</td>
-              </tr>
-              <tr role="row" style="background:rgba(181,133,58,0.05);">
-                <td role="cell" data-label="The situation on your desk" style="font-family:var(--hs-text); font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.4; color:var(--hs-ink); padding:14px 18px; vertical-align:top;">The renegotiation you&rsquo;re losing slowly, one small concession at a time</td>
-                <td role="cell" data-label="What it usually is" style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.98rem,1.4vw,1.06rem); line-height:1.4; color:var(--hs-ink2); padding:14px 18px; vertical-align:top;">Silence is a decision</td>
-                <td role="cell" data-label="What moving looks like" style="font-family:var(--hs-sans); font-weight:700; font-size:clamp(0.9rem,1.3vw,0.98rem); line-height:1.4; color:var(--hs-gold-text); padding:14px 18px; vertical-align:top;">You set the terms</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="pc-sit-more">
+          <a href="keystone-read.html" class="pc-textlink">Not sure which? Five questions, two minutes. Nothing leaves the page unless you choose to send it. &rarr;</a>
+          <p class="pc-prob">Not a diagnosis. A probability.</p>
         </div>
       </div>
 
-      <!-- Three mini-cases -->
+      <!-- Check me first, then the first half hour (new, 25 Nov 2026) -->
+      <div class="pc-trust">
+        <div class="pc-panel">
+          <h3 class="pc-panel-h">Check me first</h3>
+          <ol class="pc-check-list">
+            <li>Ask the person who sent you what they know of my work.</li>
+            <li>Talk to someone I have worked with. Ask in your email, and I will ask them to take your call.</li>
+            <li><a href="https://linkedin.com/in/michael-pienaar-93319710" target="_blank" rel="noopener noreferrer" class="pc-textlink">My career, on LinkedIn &rarr;</a></li>
+            <li>One of the Smart Procurement World Indaba&rsquo;s Champions for 2026. <a href="https://smartprocurementworld.com/indaba/speaker/michael-pienaar-2/" target="_blank" rel="noopener noreferrer" class="pc-textlink">Their page &rarr;</a></li>
+          </ol>
+        </div>
+        <div class="pc-panel">
+          <h3 class="pc-panel-h">The first half hour</h3>
+          <p class="pc-half-free">Free. No pitch.</p>
+          <p class="pc-half-line"><strong>You bring:</strong> what is stuck, who is involved, what has been tried. No papers needed.</p>
+<p class="pc-half-line">I will sign your NDA before you tell me anything, if required.</p>
+          <p class="pc-half-line"><strong>You leave with:</strong> my first read of where it may be stuck, and whether I am the right person for it. If I am not, I will say so.</p>
+          <p class="pc-half-line"><strong>If we go on:</strong> by the hour, or a few hours held each month. A scoped piece of work gets a fixed fee, confirmed in a proposal before you are charged anything.</p>
+          <p class="pc-half-line">Not for you if you have already decided and only want someone to agree.</p>
+          <div class="pc-half-act">
+            <a class="pc-btn" href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AWhat%20is%20stuck%20%28a%20line%20is%20enough%29%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A">Write to me &rarr;</a>
+            <p class="pc-fine">Prefer WhatsApp? Put your number in the email. I reply by email first, then message you there.</p>
+            <p class="pc-fine">I use what you send to reply to you, and for the work if we go on. I tell no one that you wrote unless you ask me to, and I add you to no mailing list.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ways to go deeper: the two download cards, then the line that closes the door -->
       <div data-reveal style="margin-top:clamp(48px,6vw,72px);">
-        <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:4px 20px;">
-          <div style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text);">What moving looks like</div>
-          <span style="font-family:var(--hs-text); font-style:italic; font-size:clamp(0.92rem,1.3vw,1rem); color:var(--hs-taupe);">Composites, not client stories.</span>
-        </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(18px,2.4vw,26px); margin-top:18px;">
-          <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
-            <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">A COO with a stalled award.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">The tender had sat in review for months while the supplier already in place quietly renewed. The real blockage wasn&rsquo;t price &mdash; it was a risk nobody would put their name to. The award letter went out within weeks. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
-          </div>
-          <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
-            <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">A founder who had stopped negotiating.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">They were losing ground to a much larger counterparty by silence &mdash; every week of no-decision was a concession. We built the evidence until the terms were theirs to set, not the other side&rsquo;s to grant. They signed a deal they&rsquo;d have walked away from a month earlier. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
-          </div>
-          <div style="background:var(--hs-card); border:1px solid var(--hs-hair); border-top:2px solid var(--hs-gold); border-radius:0 0 6px 6px; padding:clamp(24px,3vw,32px);">
-            <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.15rem,2vw,1.35rem); line-height:1.2; color:var(--hs-ink); margin:0;">An ops director whose go-live kept slipping.</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:12px 0 0;">Three quarters running, the date moved because &ldquo;ready&rdquo; had never been defined. We named the one owner and the one thing that actually had to be true before launch. The next date held. <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--hs-gray);">&middot; composite</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Two prominent download cards + quiet Keystone card -->
-      <div data-reveal style="margin-top:clamp(48px,6vw,72px);">
-        <div style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text);">Ways to go deeper</div>
+        <h3 style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text); margin:0;">Ways to go deeper</h3>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(16px,2vw,22px); margin-top:16px;">
           <a href="profile.pdf" target="_blank" rel="noopener" class="pc-card" style="display:block; background:#efeadf; border:1px solid var(--hs-hair); border-radius:6px; padding:clamp(24px,3vw,32px); transition:border-color .3s ease;">
             <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
-              <span style="font-weight:700; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-gold-text);">The short version</span>
+              <span style="font-weight:700; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-gold-text);">On one page</span>
             </div>
             <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.2rem,2.2vw,1.45rem); line-height:1.2; color:var(--hs-ink); margin:12px 0 0;">The one-page profile</h4>
             <p style="font-family:var(--hs-sans); font-size:clamp(0.95rem,1.4vw,1.02rem); line-height:1.55; color:var(--hs-ink2); margin:8px 0 0;">The whole thing on one page. PDF.</p>
@@ -365,14 +497,8 @@
               <span style="font-weight:700; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-gold-text);">The full picture</span>
             </div>
             <h4 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.2rem,2.2vw,1.45rem); line-height:1.2; color:var(--hs-ink); margin:12px 0 0;">The full overview</h4>
-            <p style="font-family:var(--hs-sans); font-size:clamp(0.95rem,1.4vw,1.02rem); line-height:1.55; color:var(--hs-ink2); margin:8px 0 0;">Every question answered, a short paragraph each. PDF.</p>
+            <p style="font-family:var(--hs-sans); font-size:clamp(0.95rem,1.4vw,1.02rem); line-height:1.55; color:var(--hs-ink2); margin:8px 0 0;">The usual questions answered, a short paragraph each. PDF.</p>
             <div style="font-weight:700; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--hs-gold-text); margin-top:18px;">Read it &rarr;</div>
-          </a>
-        </div>
-        <div style="margin-top:16px; display:flex; justify-content:center;">
-          <a href="keystone-read.html" class="pc-keystone-link" style="display:inline-flex; align-items:center; gap:12px; background:var(--hs-card); border:1.5px solid var(--hs-gold); border-radius:6px; padding:18px 30px; font-family:var(--hs-sans); color:var(--hs-gold-text); transition:border-color .2s ease, color .2s ease, background-color .2s ease;">
-            <span style="flex:none; width:9px; height:9px; background:var(--hs-gold); transform:rotate(45deg);"></span>
-            <span style="font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;">Or take the Keystone Read &mdash; five questions, nothing leaves the page (we never see your answers) &rarr;</span>
           </a>
         </div>
         <div style="margin-top:30px; text-align:center; font-family:var(--hs-sans); font-size:0.98rem; color:var(--hs-gray);">That&rsquo;s the short version. The whole house is below.</div>
@@ -387,7 +513,6 @@
       <h2 class="pc-why-eyebrow" id="pc-why-h">Why I do this</h2>
       <div class="pc-why-rule"></div>
       <picture class="pc-why-pic">
-        <source media="(min-width:701px)" type="image/webp" srcset="assets/michael-pienaar-wide.webp" width="985" height="700">
         <source type="image/webp" srcset="assets/michael-pienaar-portrait.webp" width="560" height="700">
         <img src="assets/michael-pienaar-portrait.jpg" width="560" height="700" loading="lazy" decoding="async" alt="Michael Pienaar in front of a painted mural">
       </picture>
@@ -439,6 +564,20 @@
         <p style="font-family:var(--hs-serif); font-style:italic; font-weight:500; font-size:clamp(1.25rem,2.6vw,1.55rem); line-height:1.4; color:var(--hs-ink2); margin:26px 0 0; max-width:34ch;">A stuck business is rarely broken everywhere. It is usually jammed in one spot &mdash; and that is where I work.</p>
         <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.02rem,1.7vw,1.14rem); line-height:1.55; color:var(--hs-gray); margin:12px 0 0; max-width:46ch;">The small, right move beats the big, expensive one. I find the spot, push there, and the whole thing starts moving again.</p>
       </div>
+      <!-- The film (25 Nov 2026) -->
+      <div class="pc-film" data-reveal>
+        <figure class="pc-film-fig">
+          <video class="pc-film-v" controls preload="none" playsinline width="1280" height="716" poster="assets/film/keystone-poster.jpg" aria-label="The keystone: a 24-second film">
+            <source src="assets/film/keystone-en.mp4" type="video/mp4">
+            Film, 24 seconds, with sound. A stone arch is built over a timber frame. The last stone, the gold keystone, is lowered into the gap. The timber falls away, the arch stands, and an ox cart crosses. Closing line: Nothing carries until the keystone is set.
+          </video>
+          <figcaption>
+            <p class="pc-film-cap">Every other stone can be in place, and the arch still carries nothing. Set one stone right, and the timber can come away. In a business, I call that stone the keystone.</p>
+            <p class="pc-film-credit">Film generated with AI tools.</p>
+          </figcaption>
+        </figure>
+        <p id="pc-film-desc" class="pc-vh">Film, 24 seconds, with sound. A stone arch is built over a timber frame. The last stone, the gold keystone, is lowered into the gap. The timber falls away, the arch stands, and an ox cart crosses. Closing line: Nothing carries until the keystone is set.</p>
+      </div>
       <div data-reveal style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr)); gap:clamp(32px,5vw,64px); margin-top:clamp(40px,5vw,58px);">
         <div>
           <div style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text);">Depth</div>
@@ -450,6 +589,11 @@
           <p style="font-family:var(--hs-serif); font-style:italic; font-weight:500; font-size:clamp(1.3rem,2.6vw,1.6rem); line-height:1.36; color:var(--hs-ink); margin:14px 0 0;">Gentle is not weak. Gentle is precise. Gentle is strong enough to not need to prove strength.</p>
           <p style="font-family:var(--hs-sans); font-size:clamp(1rem,0.4vw+0.92rem,1.1rem); line-height:1.6; color:var(--hs-ink2); margin:16px 0 0;">I build architectures that make the right outcomes inevitable, so force becomes unnecessary. Capability precedes restraint.</p>
         </div>
+      </div>
+      <!-- The Zhuangzi line (moved here from the contact section, 25 Nov 2026) -->
+      <div class="pc-quote" data-reveal>
+        <blockquote><span class="pc-quote-mark">“</span>The empty boat can collide without generating anger — because there's no one inside demanding the collision mean something. But the boat still has a hull. It still floats. The emptiness is achievement, not default.”</blockquote>
+        <div class="pc-quote-by">After Zhuangzi</div>
       </div>
     </div>
   </section>
@@ -480,7 +624,7 @@
           <div style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text);">03 · Capability</div>
           <h3 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(1.4rem,2.6vw,1.7rem); line-height:1.18; color:var(--hs-ink); margin:12px 0 0;">AI-Augmented Intelligence</h3>
           <p style="font-family:var(--hs-serif); font-style:italic; font-size:clamp(1.05rem,1.6vw,1.18rem); line-height:1.4; color:var(--hs-gold-text); margin:8px 0 0;">A genuine force multiplier.</p>
-          <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:14px 0 0;">Not chatbot gimmicks. Deep synthesis: financial forensics that separates fragile growth from hidden insolvency from genuine turnaround. 26 ratios. Altman Z-Score. Beneish M-Score. Scenario planning that takes consulting teams weeks, delivered in hours. This runs as working software, not theory.</p>
+          <p style="font-family:var(--hs-sans); font-size:clamp(0.98rem,0.4vw+0.9rem,1.06rem); line-height:1.6; color:var(--hs-ink2); margin:14px 0 0;">Not chatbot gimmicks. Deep synthesis: financial forensics that separates fragile growth from hidden insolvency from genuine turnaround. This runs as working software, not theory.</p>
         </div>
         <div class="pc-card" style="background:var(--hs-card); border:1px solid var(--hs-hair); border-radius:6px; padding:clamp(26px,3.2vw,36px); transition:border-color .3s ease;">
           <div style="font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--hs-gold-text);">04 · Structure</div>
@@ -544,31 +688,8 @@
     </div>
   </section>
 
-  <!-- ============ THE PEAK · Midnight keystone ============ -->
-  <section data-ground="dark" style="position:relative; overflow:hidden; background:var(--hs-ground); color:var(--hs-on-dark); min-height:clamp(560px,82vh,820px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(80px,11vw,132px) clamp(22px,5vw,40px); border-top:1px solid rgba(240,233,220,0.07);">
-    <div aria-hidden="true" style="position:absolute; top:-40px; left:50%; width:min(680px,110vw); height:440px; transform:translateX(-50%); background:radial-gradient(ellipse at top, rgba(224,184,112,0.14), transparent 68%); pointer-events:none;"></div>
-    <div data-reveal style="position:relative; z-index:1; max-width:740px; margin:0 auto;">
-      <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-goldb);">Institutional acupuncture</div>
-      <div style="margin:28px auto 6px; max-width:250px;">
-        <svg width="100%" viewBox="0 0 300 280" role="img" aria-label="A lamp spotlighting a gold keystone diamond">
-          <defs>
-            <linearGradient id="hy-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0e9dc" stop-opacity="0.24"></stop><stop offset="1" stop-color="#f0e9dc" stop-opacity="0"></stop></linearGradient>
-            <radialGradient id="hy-kglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#e0b870" stop-opacity="0.5"></stop><stop offset="1" stop-color="#e0b870" stop-opacity="0"></stop></radialGradient>
-          </defs>
-          <polygon points="142,40 158,40 236,250 64,250" fill="url(#hy-cone)"></polygon>
-          <path d="M138,18 Q150,6 162,18 L162,28 Q150,33 138,28 Z" fill="#2a2620" stroke="#4a443c" stroke-width="1"></path>
-          <ellipse cx="150" cy="30" rx="9" ry="2.4" fill="#e0b870"></ellipse>
-          <circle cx="150" cy="208" r="56" fill="url(#hy-kglow)"></circle>
-          <rect x="132" y="190" width="36" height="36" transform="rotate(45 150 208)" fill="#b5853a"></rect>
-        </svg>
-      </div>
-      <h2 style="font-family:var(--hs-serif); font-weight:700; font-size:clamp(2.2rem,6vw,3.6rem); line-height:1.1; letter-spacing:-0.015em; color:var(--hs-on-dark); margin:8px auto 0; max-width:18ch; text-wrap:balance;">Better placement, not more <em style="font-style:italic; font-weight:700; color:var(--hs-goldb);">force.</em></h2>
-      <p style="font-family:var(--hs-sans); font-size:clamp(1.05rem,1.9vw,1.2rem); line-height:1.6; color:var(--hs-on-dark-2); margin:24px auto 0; max-width:44ch;">Find the load-bearing point where a small, precise intervention moves the whole system. The intelligence is in knowing where.</p>
-    </div>
-  </section>
-
   <!-- ============ WHY FRACTIONAL + NUDGE · cream ============ -->
-  <section id="engage" data-ground="light" style="background:var(--hs-cream); padding:clamp(74px,9vw,116px) clamp(22px,5vw,40px);">
+  <section id="engage" data-ground="light" style="background:var(--hs-cream); padding:clamp(74px,9vw,116px) clamp(22px,5vw,40px); border-top:1px solid var(--hs-border);">
     <div style="max-width:1060px; margin:0 auto;">
       <div data-reveal>
         <div style="font-weight:700; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--hs-gold-text);">Engage</div>
@@ -620,7 +741,7 @@
         <div style="background:var(--hs-ground); border-radius:6px; border-left:3px solid var(--hs-gold); padding:clamp(26px,4vw,38px) clamp(24px,4vw,44px); max-width:660px; text-align:left;">
           <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.2rem,2.4vw,1.5rem); line-height:1.5; color:var(--hs-on-dark); margin:0;">A first conversation is for understanding what's stuck — not for selling you on what comes next. We agree what next looks like together, or we don't.</p>
         </div>
-        <a href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation" class="pc-cta" style="display:inline-block; margin-top:clamp(30px,4vw,42px); background:var(--hs-gold); color:#1b1813; font-family:var(--hs-sans); font-weight:700; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; padding:18px 38px; border-radius:0; transition:background-color .25s ease;">Start a first conversation →</a>
+        <a href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AWhat%20is%20stuck%20%28a%20line%20is%20enough%29%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A" class="pc-cta" style="display:inline-block; margin-top:clamp(30px,4vw,42px); background:var(--hs-gold); color:#1b1813; font-family:var(--hs-sans); font-weight:700; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; padding:18px 38px; border-radius:0; transition:background-color .25s ease;">Start a first conversation →</a>
       </div>
 
       <div data-reveal style="margin-top:clamp(48px,6vw,72px); display:flex; justify-content:center;">
@@ -665,7 +786,7 @@
     </div>
   </section>
 
-  <!-- ============ CONTACT + ZHUANGZI · Midnight close ============ -->
+  <!-- ============ CONTACT · Midnight close ============ -->
   <section id="contact" data-ground="dark" style="position:relative; overflow:hidden; background:var(--hs-ground); color:var(--hs-on-dark); padding:clamp(82px,11vw,134px) clamp(22px,5vw,40px) clamp(44px,6vw,60px); text-align:center;">
     <div aria-hidden="true" style="position:absolute; top:-50px; left:50%; width:min(760px,120vw); height:480px; transform:translateX(-50%); background:radial-gradient(ellipse at top, rgba(224,184,112,0.13), transparent 66%); pointer-events:none;"></div>
     <div data-reveal style="position:relative; z-index:1; max-width:760px; margin:0 auto;">
@@ -673,14 +794,13 @@
       <h2 style="font-family:var(--hs-serif); font-weight:800; font-size:clamp(2.5rem,6.6vw,3.7rem); line-height:1.04; letter-spacing:-0.018em; color:var(--hs-on-dark); margin:14px 0 0;">Michael Pienaar</h2>
       <p style="font-family:var(--hs-text); font-style:italic; font-size:clamp(1.2rem,2.5vw,1.55rem); line-height:1.45; color:var(--hs-on-dark-2); margin:18px auto 0; max-width:34ch;">No pitch. No pressure. Just a conversation to see if there's fit.</p>
       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px; margin-top:28px; font-family:var(--hs-sans); font-size:clamp(0.95rem,1.6vw,1.06rem);">
-        <a href="mailto:michaelp@probabilitycrisis.com" class="pc-contactlink" style="color:var(--hs-on-dark); border-bottom:1px solid rgba(240,233,220,0.28); padding-bottom:3px; white-space:nowrap; transition:color .2s ease, border-color .2s ease;">michaelp@probabilitycrisis.com</a>
-        <a href="https://linkedin.com/in/michael-pienaar-93319710" target="_blank" rel="noopener" class="pc-contactlink" style="color:var(--hs-on-dark); border-bottom:1px solid rgba(240,233,220,0.28); padding-bottom:3px; white-space:nowrap; transition:color .2s ease, border-color .2s ease;">LinkedIn</a>
+        <a href="mailto:michaelp@probabilitycrisis.com?subject=First%20conversation&amp;body=Michael%2C%0D%0A%0D%0AWhat%20is%20stuck%20%28a%20line%20is%20enough%29%3A%0D%0A%0D%0AWho%20suggested%20I%20write%20%28if%20you%27d%20like%20to%20say%29%3A%0D%0A%0D%0AIf%20WhatsApp%20suits%20me%20better%2C%20my%20number%3A" class="pc-contactlink" style="color:var(--hs-on-dark); border-bottom:1px solid rgba(240,233,220,0.28); padding-bottom:3px; white-space:nowrap; transition:color .2s ease, border-color .2s ease;">michaelp@probabilitycrisis.com</a>
+        <a href="https://linkedin.com/in/michael-pienaar-93319710" target="_blank" rel="noopener noreferrer" class="pc-contactlink" style="color:var(--hs-on-dark); border-bottom:1px solid rgba(240,233,220,0.28); padding-bottom:3px; white-space:nowrap; transition:color .2s ease, border-color .2s ease;">LinkedIn</a>
       </div>
-    </div>
-
-    <div data-reveal style="position:relative; z-index:1; max-width:820px; margin:clamp(72px,10vw,108px) auto 0; padding-top:clamp(40px,5vw,56px); border-top:1px solid rgba(240,233,220,0.14);">
-      <blockquote style="font-family:var(--hs-text); font-style:italic; font-weight:400; font-size:clamp(1.28rem,2.8vw,1.85rem); line-height:1.5; color:var(--hs-on-dark); margin:0;"><span style="font-family:var(--hs-serif); font-style:italic; color:var(--hs-goldb); font-size:1.5em; line-height:0; vertical-align:-0.22em; margin-right:3px;">“</span>The empty boat can collide without generating anger — because there's no one inside demanding the collision mean something. But the boat still has a hull. It still floats. The emptiness is achievement, not default.”</blockquote>
-      <div style="margin-top:24px; font-weight:700; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--hs-goldlbl-d);">After Zhuangzi</div>
+      <div class="pc-contact-notes">
+        <p class="pc-fine-d">Prefer WhatsApp? Put your number in the email. I reply by email first, then message you there.</p>
+        <p class="pc-fine-d">I use what you send to reply to you, and for the work if we go on. I tell no one that you wrote unless you ask me to, and I add you to no mailing list.</p>
+      </div>
     </div>
 
     <div style="position:relative; z-index:1; max-width:1000px; margin:clamp(56px,8vw,84px) auto 0; padding-top:clamp(26px,4vw,36px); border-top:1px solid rgba(240,233,220,0.12); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; text-align:left;">
@@ -853,38 +973,40 @@
 </script>
 <script>
 (function(){
-  var g=document.getElementById('pc-gloss'), pop=document.getElementById('pc-gloss-pop');
-  if(!g||!pop) return;
-  function place(){
-    pop.style.transform='translateX(-50%)';
-    pop.classList.remove('below');
-    var r=pop.getBoundingClientRect(), inset=14, dx=0;
-    if(r.top<70){ pop.classList.add('below'); r=pop.getBoundingClientRect(); }
-    if(r.left<inset) dx=inset-r.left;
-    var vw=Math.min(innerWidth,(window.visualViewport&&window.visualViewport.width)||innerWidth); if(r.right>vw-inset) dx=(vw-inset)-r.right;
-    if(dx) pop.style.transform='translateX(calc(-50% + '+dx.toFixed(0)+'px))';
-  }
-  function open(){ g.classList.add('open'); place(); }
-  g.addEventListener('click',function(e){ e.preventDefault(); g.classList.contains('open')?g.classList.remove('open'):open(); });
-  g.addEventListener('mouseenter',place);
-  g.addEventListener('focus',place);
-  document.addEventListener('click',function(e){ if(!g.contains(e.target)) g.classList.remove('open'); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') g.classList.remove('open'); });
-  addEventListener('resize',place); addEventListener('load',place); place();
-})();
-</script>
-<script>
-(function(){
   var t=document.createElement('div');
   t.style.cssText='position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(8px);background:#26221e;color:#e0b870;font-family:Lato,Arial,sans-serif;font-size:13px;letter-spacing:.08em;padding:10px 18px;border:1px solid rgba(224,184,112,.35);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:99;';
   document.body.appendChild(t);var h;
+  var say=function(msg,ms){
+    t.textContent=msg;
+    t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+    clearTimeout(h);h=setTimeout(function(){t.style.opacity='0';t.style.transform='translateX(-50%) translateY(8px)';},ms||2600);
+  };
+  // The second try when the Clipboard API is missing or refuses: an off-screen textarea and execCommand.
+  var copyByTextarea=function(text){
+    var ta=document.createElement('textarea'),ok=false;
+    ta.value=text;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;';
+    document.body.appendChild(ta);
+    try{ta.select();ta.setSelectionRange(0,text.length);ok=document.execCommand('copy');}catch(e){ok=false;}
+    document.body.removeChild(ta);
+    return ok;
+  };
   document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
     a.addEventListener('click',function(){
-      var addr=a.getAttribute('href').replace(/^mailto:/,'').split('?')[0];
-      try{navigator.clipboard.writeText(addr).catch(function(){});}catch(e){}
-      t.textContent='Email address copied \u2014 '+addr;
-      t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
-      clearTimeout(h);h=setTimeout(function(){t.style.opacity='0';t.style.transform='translateX(-50%) translateY(8px)';},2600);
+      var href=a.getAttribute('href');
+      var addr=href.replace(/^mailto:/,'').split('?')[0];
+      var fail=function(){say('Couldn\u2019t copy. Write to michaelp@probabilitycrisis.com',8000);};
+      var text,body;
+      try{
+        var m=href.match(/[?&]body=([^&]*)/);
+        body=m?decodeURIComponent(m[1].replace(/\+/g,' ')):'';
+        text=body?addr+'\n\n'+body:addr;
+      }catch(e){fail();return;}
+      var done=function(){say(body?'Address and note copied. Paste them into any email if nothing opened.':'Email address copied \u2014 '+addr);};
+      var retry=function(){if(copyByTextarea(text)){done();}else{fail();}};
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        try{navigator.clipboard.writeText(text).then(done,retry);}catch(e){retry();}
+      }else{retry();}
     });
   });
 })();

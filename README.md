@@ -15,7 +15,7 @@
 - `_config.yml` exists only to make Jekyll serve `.well-known/security.txt`; the pages carry no front matter.
 
 ## Contents
-`index.html` (Hybrid cut, the lead) · `keystone-read.html` (the instrument) · `profile.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `CNAME` · `robots.txt`
+`index.html` (Hybrid cut, the lead) · `keystone-read.html` (the instrument) · `profile.pdf` · `what-i-do.pdf` · `assets/seal-email.png` (feeds the email-signature seal variant) · `assets/film/` (the keystone film and its poster, shown on the three home pages; the CSP allows video, `media-src 'self'`, on the home pages only) · `CNAME` · `robots.txt`
 
 ## Translations
 `index.html` is the canonical English source, forever; `index.zh.html` (Simplified Mandarin) and `index.af.html` (Afrikaans) are derived artifacts, never edited independently of it — the same holds for `keystone-read.zh.html` / `keystone-read.af.html` against `keystone-read.html`. The manifest at `.github/i18n/manifest.json` records the exact source commit each translation derives from. **Run `python .github/i18n/check.py` before any site work** — it flags drift between the source and each translation's recorded base. On STALE: `git diff <base>..HEAD -- index.html`, translate only the delta, patch the translation, then bump `base` in the manifest to the new hash.

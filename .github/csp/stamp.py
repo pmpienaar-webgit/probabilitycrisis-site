@@ -36,9 +36,15 @@ re-stamp all pages)
   default-src 'none'        nothing is allowed unless named below
   script-src  <hashes>      only the inline blocks present at stamp time
   style-src   'unsafe-inline'   the pages style themselves inline by design
-  img-src     'self' data:  the favicon and any CSS image are data: URIs
+  img-src     'self' data:  the favicon and any CSS image are data: URIs; the
+                            pictures in assets/ (the portrait, the film's
+                            poster) are same-site files
   font-src    data:         the fonts are embedded base64
   connect-src 'none'        no fetch / XHR / beacon / WebSocket — ever
+  media-src   per page      'self' on the pages in MEDIA_PAGES (the three home
+                            pages, which carry the film from assets/film/);
+                            'none' on every other page (the keystone-read
+                            pages carry no film, so they allow no media)
   everything else 'none'; base-uri 'none'; form-action 'none'
   (frame-ancestors is deliberately absent: browsers ignore it in a meta tag
   and log a warning; clickjacking protection needs a real header.)
@@ -65,6 +71,13 @@ PAGES = [
     "keystone-read.zh.html",
 ]
 
+# The pages that carry the film. Only these get media-src 'self'; every other page gets 'none'.
+MEDIA_PAGES = {
+    "index.html",
+    "index.af.html",
+    "index.zh.html",
+}
+
 POLICY = (
     "default-src 'none'; "
     "script-src {hashes}; "
@@ -74,7 +87,7 @@ POLICY = (
     "connect-src 'none'; "
     "object-src 'none'; "
     "frame-src 'none'; "
-    "media-src 'none'; "
+    "media-src {media}; "
     "worker-src 'none'; "
     "manifest-src 'none'; "
     "base-uri 'none'; "
@@ -112,10 +125,11 @@ def script_hashes(html: str) -> list[str]:
     return tokens
 
 
-def build_meta(tokens: list[str]) -> str:
+def build_meta(tokens: list[str], page_name: str) -> str:
+    media = "'self'" if page_name in MEDIA_PAGES else "'none'"
     return (
         '<meta http-equiv="Content-Security-Policy" content="'
-        + POLICY.format(hashes=" ".join(tokens))
+        + POLICY.format(hashes=" ".join(tokens), media=media)
         + '">'
     )
 
@@ -129,7 +143,7 @@ def process(path: Path, check_only: bool) -> bool:
         print(f"SKIP    {path.name} (no inline scripts)")
         return True
 
-    wanted = build_meta(tokens)
+    wanted = build_meta(tokens, path.name)
     existing = META_RE.search(raw)
     if existing and existing.group(0).rstrip("\r\n") == wanted:
         print(f"CURRENT {path.name} ({len(tokens)} hashes)")
